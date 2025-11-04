@@ -78,12 +78,26 @@ const Home = () => {
       </div> */}
 
       {/* Aurora Effect */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      {/* <div className="fixed inset-0 z-0 pointer-events-none">
         <Aurora
           colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
           blend={0.2}
           amplitude={0.5}
           speed={1.0}
+        />
+      </div> */}
+
+      {/* Particles Effect */}
+      <div className="fixed inset-0 z-0 pointer-events-auto">
+        <Particles
+          particleColors={["#ffffff", "#ffffff"]}
+          particleCount={200}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
         />
       </div>
 
