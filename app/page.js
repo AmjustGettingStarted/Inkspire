@@ -19,6 +19,10 @@ import {
 } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
+import LightRays from "@/components/reactbits/LightRays";
+import Aurora from "@/components/reactbits/Aurora";
+import Particles from "@/components/reactbits/Particles";
+import DarkVeil from "@/components/reactbits/DarkVeil";
 
 const Home = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -45,17 +49,33 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
       {/* Animated gradient background */}
-      <div className="fixed inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-green-900/20 animate-pulse"></div>
+      {/* <div className="fixed inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-green-900/20 animate-pulse"></div> */}
 
       {/* Dynamic cursor effect */}
-      <div
+      {/* <div
         className="fixed w-96 h-96 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-3xl pointer-events-none z-0"
         style={{
           left: mousePosition.x - 192,
           top: mousePosition.y - 192,
           transition: "all 0.3s ease-out",
         }}
-      ></div>
+      ></div> */}
+
+      {/* Light Rays Effect */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#00ffff"
+          raysSpeed={1.5}
+          lightSpread={0.8}
+          rayLength={1.2}
+          followMouse={true}
+          mouseInfluence={0.1}
+          noiseAmount={0.1}
+          distortion={0.05}
+          className="custom-rays"
+        />
+      </div>
 
       {/* Hero Section */}
       <section className="relative z-10 mt-48 px-4 sm:px-6">
