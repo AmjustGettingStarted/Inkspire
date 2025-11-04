@@ -88,7 +88,7 @@ const Home = () => {
       </div> */}
 
       {/* Particles Effect */}
-      <div className="fixed inset-0 z-0 pointer-events-auto">
+      {/* <div className="fixed inset-0 z-0 pointer-events-auto">
         <Particles
           particleColors={["#ffffff", "#ffffff"]}
           particleCount={200}
@@ -99,7 +99,15 @@ const Home = () => {
           alphaParticles={false}
           disableRotation={false}
         />
+      </div> */}
+
+      {/* DarkVeil Effect */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <DarkVeil />
       </div>
+
+      {/* Empty Template */}
+      {/* <div className="fixed inset-0 z-0 pointer-events-none"></div> */}
 
       {/* Hero Section */}
       <section className="relative z-10 mt-48 px-4 sm:px-6">
