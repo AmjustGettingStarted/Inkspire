@@ -62,7 +62,7 @@ const Home = () => {
       ></div> */}
 
       {/* Light Rays Effect */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      {/* <div className="fixed inset-0 z-0 pointer-events-none">
         <LightRays
           raysOrigin="top-center"
           raysColor="#00ffff"
@@ -75,22 +75,17 @@ const Home = () => {
           distortion={0.05}
           className="custom-rays"
         />
-      </div>
+      </div> */}
 
       {/* Aurora Effect */}
-      {/* <div className="fixed inset-0 z-0 pointer-events-none">
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <Aurora
           colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
           blend={0.2}
           amplitude={0.5}
           speed={1.0}
         />
-      </div> */}
-
-
-     
-
-      
+      </div>
 
       {/* Hero Section */}
       <section className="relative z-10 mt-48 px-4 sm:px-6">
