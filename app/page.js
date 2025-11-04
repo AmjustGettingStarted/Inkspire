@@ -62,20 +62,20 @@ const Home = () => {
       ></div> */}
 
       {/* Light Rays Effect */}
-      {/* <div className="fixed inset-0 z-0 pointer-events-none">
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <LightRays
           raysOrigin="top-center"
           raysColor="#00ffff"
           raysSpeed={1.5}
           lightSpread={0.8}
-          rayLength={1.2}
+          rayLength={1.5}
           followMouse={true}
           mouseInfluence={0.1}
           noiseAmount={0.1}
           distortion={0.05}
           className="custom-rays"
         />
-      </div> */}
+      </div>
 
       {/* Aurora Effect */}
       {/* <div className="fixed inset-0 z-0 pointer-events-none">
@@ -102,9 +102,9 @@ const Home = () => {
       </div> */}
 
       {/* DarkVeil Effect */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      {/* <div className="fixed inset-0 z-0 pointer-events-none">
         <DarkVeil />
-      </div>
+      </div> */}
 
       {/* Empty Template */}
       {/* <div className="fixed inset-0 z-0 pointer-events-none"></div> */}
