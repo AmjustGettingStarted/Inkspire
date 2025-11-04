@@ -77,6 +77,21 @@ const Home = () => {
         />
       </div>
 
+      {/* Aurora Effect */}
+      {/* <div className="fixed inset-0 z-0 pointer-events-none">
+        <Aurora
+          colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
+          blend={0.2}
+          amplitude={0.5}
+          speed={1.0}
+        />
+      </div> */}
+
+
+     
+
+      
+
       {/* Hero Section */}
       <section className="relative z-10 mt-48 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
