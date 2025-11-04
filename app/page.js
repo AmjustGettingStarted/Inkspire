@@ -62,7 +62,7 @@ const Home = () => {
       ></div> */}
 
       {/* Light Rays Effect */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      {/* <div className="fixed inset-0 z-0 pointer-events-none">
         <LightRays
           raysOrigin="top-center"
           raysColor="#00ffff"
@@ -75,7 +75,7 @@ const Home = () => {
           distortion={0.05}
           className="custom-rays"
         />
-      </div>
+      </div> */}
 
       {/* Aurora Effect */}
       {/* <div className="fixed inset-0 z-0 pointer-events-none">
@@ -88,7 +88,7 @@ const Home = () => {
       </div> */}
 
       {/* Particles Effect */}
-      {/* <div className="fixed inset-0 z-0 pointer-events-auto">
+      <div className="fixed inset-0 z-0 pointer-events-auto">
         <Particles
           particleColors={["#ffffff", "#ffffff"]}
           particleCount={200}
@@ -99,7 +99,7 @@ const Home = () => {
           alphaParticles={false}
           disableRotation={false}
         />
-      </div> */}
+      </div>
 
       {/* DarkVeil Effect */}
       {/* <div className="fixed inset-0 z-0 pointer-events-none">
