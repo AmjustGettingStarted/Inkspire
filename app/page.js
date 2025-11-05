@@ -222,18 +222,42 @@ const Home = () => {
             {features.map((feature, index) => (
               <Card
                 key={index}
-                className="group transition-all duration-300 hover:scale-105 card-glass"
+                className="group transition-all duration-500 ease-in-out hover:scale-105 card-glass"
               >
                 <CardContent className="p-6 sm:p-8">
+                  {/* Icon Box */}
                   <div
-                    className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform`}
+                    className="
+            w-12 h-12 sm:w-16 sm:h-16 
+            rounded-2xl flex items-center justify-center mb-4 sm:mb-6
+            bg-black text-white border border-white/10
+            transition-all duration-500 ease-in-out
+            group-hover:bg-white group-hover:text-black group-hover:border-white
+            group-hover:scale-110
+          "
                   >
-                    <feature.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                    <feature.icon className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-500 ease-in-out" />
                   </div>
-                  <CardTitle className="text-lg sm:text-xl mb-3 sm:mb-4 text-white">
+
+                  {/* Title */}
+                  <CardTitle
+                    className="
+            text-lg sm:text-xl mb-3 sm:mb-4 text-white
+            transition-colors duration-500 ease-in-out
+            group-hover:text-white
+          "
+                  >
                     {feature.title}
                   </CardTitle>
-                  <CardDescription className="text-sm sm:text-base text-gray-400">
+
+                  {/* Description */}
+                  <CardDescription
+                    className="
+            text-sm sm:text-base text-gray-400
+            transition-colors duration-500 ease-in-out
+            group-hover:text-gray-200
+          "
+                  >
                     {feature.desc}
                   </CardDescription>
                 </CardContent>
