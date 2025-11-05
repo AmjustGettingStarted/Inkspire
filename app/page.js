@@ -214,8 +214,7 @@ const Home = () => {
               <span className="gradient-text-primary">Everything you need</span>
             </h2>
             <p className="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto px-4">
-              From AI-powered writing assistance to advanced analytics,
-              we&apos;ve built the complete toolkit for modern creators.
+              The complete AI toolkit for creators to write, publish, and grow.
             </p>
           </div>
 
