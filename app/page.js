@@ -155,7 +155,7 @@ const Home = () => {
               </Link>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 sm:gap-8 text-sm text-gray-400">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 sm:gap-8 text-sm text-slate-400">
               <div className="flex items-center gap-2">
                 <div className="flex -space-x-2">
                   {[
@@ -175,7 +175,7 @@ const Home = () => {
                     </div>
                   ))}
                 </div>
-                <span>10k+ creators</span>
+                <span>1k+ creators</span>
               </div>
               <div className="flex items-center gap-1">
                 {[...Array(5)].map((_, i) => (
