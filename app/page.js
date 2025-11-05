@@ -115,12 +115,12 @@ const Home = () => {
           <div className="space-y-6 sm:space-y-8 text-center lg:text-left">
             <div className="space-y-4 sm:space-y-6">
               <h1 className="text-7xl lg:text-8xl font-black leading-none tracking-tight">
-                <span className="block font-black text-white">Create.</span>
+                <span className="block font-black text-white">Imagine.</span>
                 <span className="block font-light italic text-purple-300">
-                  Publish.
+                  Ink.
                 </span>
                 <span className="block font-black bg-gradient-to-r from-blue-400 via-purple-400 to-green-400 bg-clip-text text-transparent">
-                  Grow.
+                  Inspire.
                 </span>
               </h1>
 
