@@ -115,12 +115,12 @@ const Home = () => {
           <div className="space-y-6 sm:space-y-8 text-center lg:text-left">
             <div className="space-y-4 sm:space-y-6">
               <h1 className="text-7xl lg:text-8xl font-black leading-none tracking-tight">
-                <span className="block font-black text-white">Create.</span>
+                <span className="block font-black text-white">Imagine.</span>
                 <span className="block font-light italic text-purple-300">
-                  Publish.
+                  Ink.
                 </span>
                 <span className="block font-black bg-gradient-to-r from-blue-400 via-purple-400 to-green-400 bg-clip-text text-transparent">
-                  Grow.
+                  Inspire.
                 </span>
               </h1>
 
@@ -129,7 +129,7 @@ const Home = () => {
                 <span className="text-purple-300 font-semibold">
                   engaging content
                 </span>{" "}
-                and helps you build a thriving creator business.
+                and helps you grow a thriving creator business.
               </p>
             </div>
 
@@ -155,7 +155,7 @@ const Home = () => {
               </Link>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 sm:gap-8 text-sm text-gray-400">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 sm:gap-8 text-sm text-slate-400">
               <div className="flex items-center gap-2">
                 <div className="flex -space-x-2">
                   {[
@@ -175,7 +175,7 @@ const Home = () => {
                     </div>
                   ))}
                 </div>
-                <span>10k+ creators</span>
+                <span>1k+ creators</span>
               </div>
               <div className="flex items-center gap-1">
                 {[...Array(5)].map((_, i) => (
@@ -213,9 +213,8 @@ const Home = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6">
               <span className="gradient-text-primary">Everything you need</span>
             </h2>
-            <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto px-4">
-              From AI-powered writing assistance to advanced analytics,
-              we&apos;ve built the complete toolkit for modern creators.
+            <p className="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto px-4">
+              The complete AI toolkit for creators to write, publish, and grow.
             </p>
           </div>
 
@@ -223,18 +222,42 @@ const Home = () => {
             {features.map((feature, index) => (
               <Card
                 key={index}
-                className="group transition-all duration-300 hover:scale-105 card-glass"
+                className="group transition-all duration-500 ease-in-out hover:scale-105 card-glass"
               >
                 <CardContent className="p-6 sm:p-8">
+                  {/* Icon Box */}
                   <div
-                    className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform`}
+                    className="
+            w-12 h-12 sm:w-16 sm:h-16 
+            rounded-2xl flex items-center justify-center mb-4 sm:mb-6
+            bg-black text-white border border-white/10
+            transition-all duration-500 ease-in-out
+            group-hover:bg-white group-hover:text-black group-hover:border-white
+            group-hover:scale-110
+          "
                   >
-                    <feature.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                    <feature.icon className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-500 ease-in-out" />
                   </div>
-                  <CardTitle className="text-lg sm:text-xl mb-3 sm:mb-4 text-white">
+
+                  {/* Title */}
+                  <CardTitle
+                    className="
+            text-lg sm:text-xl mb-3 sm:mb-4 text-white
+            transition-colors duration-500 ease-in-out
+            group-hover:text-white
+          "
+                  >
                     {feature.title}
                   </CardTitle>
-                  <CardDescription className="text-sm sm:text-base text-gray-400">
+
+                  {/* Description */}
+                  <CardDescription
+                    className="
+            text-sm sm:text-base text-gray-400
+            transition-colors duration-500 ease-in-out
+            group-hover:text-gray-200
+          "
+                  >
                     {feature.desc}
                   </CardDescription>
                 </CardContent>
