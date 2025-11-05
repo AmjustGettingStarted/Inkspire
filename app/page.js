@@ -213,7 +213,7 @@ const Home = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6">
               <span className="gradient-text-primary">Everything you need</span>
             </h2>
-            <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto px-4">
+            <p className="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto px-4">
               From AI-powered writing assistance to advanced analytics,
               we&apos;ve built the complete toolkit for modern creators.
             </p>
