@@ -129,7 +129,7 @@ const Home = () => {
                 <span className="text-purple-300 font-semibold">
                   engaging content
                 </span>{" "}
-                and helps you build a thriving creator business.
+                and helps you grow a thriving creator business.
               </p>
             </div>
 
