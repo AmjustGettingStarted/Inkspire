@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+
 import {
   features,
   platformTabs,
@@ -23,7 +23,6 @@ import LightRays from "@/components/reactbits/LightRays";
 import Aurora from "@/components/reactbits/Aurora";
 import Particles from "@/components/reactbits/Particles";
 import DarkVeil from "@/components/reactbits/DarkVeil";
-import { AnimatedTestimonial } from "@/components/aceternity/animated-testimonial";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 
 const Home = () => {
@@ -376,8 +375,8 @@ const Home = () => {
             </h2>
           </div>
 
-        {/*  Animated Testimonial */}
-         
+          {/*  Animated Testimonial */}
+
           <AnimatedTestimonials testimonials={testimonials} />
         </div>
       </section>
@@ -419,10 +418,13 @@ const Home = () => {
 
       {/* Footer */}
       <footer className="relative z-10 border-t py-8 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto text-center">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-2">
           <p className="text-muted-foreground">
             Made with ❤️ by{" "}
-            <span className="text-foreground font-semibold">RoadsideCoder</span>
+            <span className="text-foreground font-semibold">HMV</span>
+          </p>
+          <p className="text-muted-foreground">
+            © {new Date().getFullYear()} All rights reserved.
           </p>
         </div>
       </footer>
