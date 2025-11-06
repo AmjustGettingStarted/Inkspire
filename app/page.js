@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+
 import {
   features,
   platformTabs,
@@ -23,6 +23,21 @@ import LightRays from "@/components/reactbits/LightRays";
 import Aurora from "@/components/reactbits/Aurora";
 import Particles from "@/components/reactbits/Particles";
 import DarkVeil from "@/components/reactbits/DarkVeil";
+import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+import { MorphingText } from "@/components/ui/morphing-text";
+
+const texts = [
+  "Imagine",
+  "Ink",
+  "Inspire",
+  "Create",
+  "Publish",
+  "Share",
+  "Engage",
+  "Grow",
+  "Express",
+  "Elevate",
+];
 
 const Home = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -62,7 +77,7 @@ const Home = () => {
       ></div> */}
 
       {/* Light Rays Effect */}
-      {/* <div className="fixed inset-0 z-0 pointer-events-none">
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <LightRays
           raysOrigin="top-center"
           raysColor="#00ffff"
@@ -75,20 +90,20 @@ const Home = () => {
           distortion={0.05}
           className="custom-rays"
         />
-      </div> */}
+      </div>
 
       {/* Aurora Effect */}
       {/* <div className="fixed inset-0 z-0 pointer-events-none">
         <Aurora
           colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
-          blend={0.2}
-          amplitude={0.5}
+          blend={0.1}
+          amplitude={0.2}
           speed={1.0}
         />
       </div> */}
 
       {/* Particles Effect */}
-      <div className="fixed inset-0 z-0 pointer-events-auto">
+      {/* <div className="fixed inset-0 z-0 pointer-events-auto">
         <Particles
           particleColors={["#ffffff", "#ffffff"]}
           particleCount={200}
@@ -99,7 +114,7 @@ const Home = () => {
           alphaParticles={false}
           disableRotation={false}
         />
-      </div>
+      </div> */}
 
       {/* DarkVeil Effect */}
       {/* <div className="fixed inset-0 z-0 pointer-events-none">
@@ -115,13 +130,7 @@ const Home = () => {
           <div className="space-y-6 sm:space-y-8 text-center lg:text-left">
             <div className="space-y-4 sm:space-y-6">
               <h1 className="text-7xl lg:text-8xl font-black leading-none tracking-tight">
-                <span className="block font-black text-white">Imagine.</span>
-                <span className="block font-light italic text-purple-300">
-                  Ink.
-                </span>
-                <span className="block font-black bg-gradient-to-r from-blue-400 via-purple-400 to-green-400 bg-clip-text text-transparent">
-                  Inspire.
-                </span>
+                <MorphingText texts={texts} />
               </h1>
 
               <p className="text-lg sm:text-xl md:text-2xl text-gray-300 font-light leading-relaxed max-w-2xl md:max-w-none">
@@ -288,13 +297,13 @@ const Home = () => {
                     key={index}
                     variant={activeTab === index ? "outline" : "ghost"}
                     onClick={() => setActiveTab(index)}
-                    className="w-full justify-start h-auto p-6 "
+                    className="w-full justify-start h-auto p-6 cursor-pointer "
                   >
                     <div className="flex items-center gap-4">
                       <div
                         className={`w-12 h-12 rounded-xl flex items-center justify-center ${
                           activeTab === index
-                            ? "bg-gradient-to-br from-purple-500 to-blue-500"
+                            ? " bg-white text-black"
                             : "bg-muted"
                         }`}
                       >
@@ -347,7 +356,7 @@ const Home = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6 lg:gap-8">
             {socialProofStats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-black rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
                   <stat.icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />
                 </div>
                 <div className="text-3xl sm:text-4xl lg:text-5xl font-black mb-2 gradient-text-accent">
@@ -374,50 +383,9 @@ const Home = () => {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card
-                key={index}
-                className="transition-all duration-300 hover:shadow-lg card-glass"
-              >
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 fill-yellow-400 text-yellow-400"
-                      />
-                    ))}
-                  </div>
-                  <p className="mb-6 leading-relaxed text-gray-300">
-                    &quot;{testimonial.content}&quot;
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <div className="relative w-12 h-12">
-                      <Image
-                        src={`https://images.unsplash.com/photo-${testimonial.imageId}?w=100&h=100&fit=crop&crop=face`}
-                        alt={testimonial.name}
-                        fill
-                        className="rounded-full border-2 border-gray-700 object-cover"
-                        sizes="48px"
-                      />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-white">
-                        {testimonial.name}
-                      </div>
-                      <div className="text-gray-400 text-sm">
-                        {testimonial.role}
-                      </div>
-                      <Badge variant="secondary" className="mt-1">
-                        {testimonial.company}
-                      </Badge>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {/*  Animated Testimonial */}
+
+          <AnimatedTestimonials testimonials={testimonials} />
         </div>
       </section>
 
@@ -437,7 +405,7 @@ const Home = () => {
               <Button
                 size="xl"
                 variant="primary"
-                className="rounded-full text-white w-full"
+                className="rounded-full cursor-pointer text-white w-full"
               >
                 Start Your Journey
                 <ArrowRight className="h-5 w-5" />
@@ -447,7 +415,7 @@ const Home = () => {
               <Button
                 variant="outline"
                 size="xl"
-                className="rounded-full w-full"
+                className="rounded-full cursor-pointer w-full"
               >
                 Explore the Feed
               </Button>
@@ -458,10 +426,13 @@ const Home = () => {
 
       {/* Footer */}
       <footer className="relative z-10 border-t py-8 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto text-center">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-2">
           <p className="text-muted-foreground">
             Made with ❤️ by{" "}
-            <span className="text-foreground font-semibold">RoadsideCoder</span>
+            <span className="text-foreground font-semibold">HMV</span>
+          </p>
+          <p className="text-muted-foreground">
+            © {new Date().getFullYear()} All rights reserved.
           </p>
         </div>
       </footer>
