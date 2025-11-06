@@ -23,6 +23,8 @@ import LightRays from "@/components/reactbits/LightRays";
 import Aurora from "@/components/reactbits/Aurora";
 import Particles from "@/components/reactbits/Particles";
 import DarkVeil from "@/components/reactbits/DarkVeil";
+import { AnimatedTestimonial } from "@/components/aceternity/animated-testimonial";
+import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 
 const Home = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -374,50 +376,9 @@ const Home = () => {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card
-                key={index}
-                className="transition-all duration-300 hover:shadow-lg card-glass"
-              >
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 fill-yellow-400 text-yellow-400"
-                      />
-                    ))}
-                  </div>
-                  <p className="mb-6 leading-relaxed text-gray-300">
-                    &quot;{testimonial.content}&quot;
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <div className="relative w-12 h-12">
-                      <Image
-                        src={`https://images.unsplash.com/photo-${testimonial.imageId}?w=100&h=100&fit=crop&crop=face`}
-                        alt={testimonial.name}
-                        fill
-                        className="rounded-full border-2 border-gray-700 object-cover"
-                        sizes="48px"
-                      />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-white">
-                        {testimonial.name}
-                      </div>
-                      <div className="text-gray-400 text-sm">
-                        {testimonial.role}
-                      </div>
-                      <Badge variant="secondary" className="mt-1">
-                        {testimonial.company}
-                      </Badge>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        {/*  Animated Testimonial */}
+         
+          <AnimatedTestimonials testimonials={testimonials} />
         </div>
       </section>
 
