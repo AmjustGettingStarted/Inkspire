@@ -288,13 +288,13 @@ const Home = () => {
                     key={index}
                     variant={activeTab === index ? "outline" : "ghost"}
                     onClick={() => setActiveTab(index)}
-                    className="w-full justify-start h-auto p-6 "
+                    className="w-full justify-start h-auto p-6 cursor-pointer "
                   >
                     <div className="flex items-center gap-4">
                       <div
                         className={`w-12 h-12 rounded-xl flex items-center justify-center ${
                           activeTab === index
-                            ? "bg-gradient-to-br from-purple-500 to-blue-500"
+                            ? " bg-white text-black"
                             : "bg-muted"
                         }`}
                       >
