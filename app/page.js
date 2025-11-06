@@ -26,7 +26,18 @@ import DarkVeil from "@/components/reactbits/DarkVeil";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { MorphingText } from "@/components/ui/morphing-text";
 
-const texts = ["Imagine", "Ink", "Inspire"];
+const texts = [
+  "Imagine",
+  "Ink",
+  "Inspire",
+  "Create",
+  "Publish",
+  "Share",
+  "Engage",
+  "Grow",
+  "Express",
+  "Elevate",
+];
 
 const Home = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
