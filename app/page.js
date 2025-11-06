@@ -24,6 +24,9 @@ import Aurora from "@/components/reactbits/Aurora";
 import Particles from "@/components/reactbits/Particles";
 import DarkVeil from "@/components/reactbits/DarkVeil";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+import { MorphingText } from "@/components/ui/morphing-text";
+
+const texts = ["Imagine", "Ink", "Inspire"];
 
 const Home = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -63,7 +66,7 @@ const Home = () => {
       ></div> */}
 
       {/* Light Rays Effect */}
-      {/* <div className="fixed inset-0 z-0 pointer-events-none">
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <LightRays
           raysOrigin="top-center"
           raysColor="#00ffff"
@@ -76,20 +79,20 @@ const Home = () => {
           distortion={0.05}
           className="custom-rays"
         />
-      </div> */}
+      </div>
 
       {/* Aurora Effect */}
       {/* <div className="fixed inset-0 z-0 pointer-events-none">
         <Aurora
           colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
-          blend={0.2}
-          amplitude={0.5}
+          blend={0.1}
+          amplitude={0.2}
           speed={1.0}
         />
       </div> */}
 
       {/* Particles Effect */}
-      <div className="fixed inset-0 z-0 pointer-events-auto">
+      {/* <div className="fixed inset-0 z-0 pointer-events-auto">
         <Particles
           particleColors={["#ffffff", "#ffffff"]}
           particleCount={200}
@@ -100,7 +103,7 @@ const Home = () => {
           alphaParticles={false}
           disableRotation={false}
         />
-      </div>
+      </div> */}
 
       {/* DarkVeil Effect */}
       {/* <div className="fixed inset-0 z-0 pointer-events-none">
@@ -116,13 +119,7 @@ const Home = () => {
           <div className="space-y-6 sm:space-y-8 text-center lg:text-left">
             <div className="space-y-4 sm:space-y-6">
               <h1 className="text-7xl lg:text-8xl font-black leading-none tracking-tight">
-                <span className="block font-black text-white">Imagine.</span>
-                <span className="block font-light italic text-purple-300">
-                  Ink.
-                </span>
-                <span className="block font-black bg-gradient-to-r from-blue-400 via-purple-400 to-green-400 bg-clip-text text-transparent">
-                  Inspire.
-                </span>
+                <MorphingText texts={texts} />
               </h1>
 
               <p className="text-lg sm:text-xl md:text-2xl text-gray-300 font-light leading-relaxed max-w-2xl md:max-w-none">
@@ -397,7 +394,7 @@ const Home = () => {
               <Button
                 size="xl"
                 variant="primary"
-                className="rounded-full text-white w-full"
+                className="rounded-full cursor-pointer text-white w-full"
               >
                 Start Your Journey
                 <ArrowRight className="h-5 w-5" />
@@ -407,7 +404,7 @@ const Home = () => {
               <Button
                 variant="outline"
                 size="xl"
-                className="rounded-full w-full"
+                className="rounded-full cursor-pointer w-full"
               >
                 Explore the Feed
               </Button>
