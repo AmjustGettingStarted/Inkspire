@@ -379,7 +379,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 sm:mb-6">
-              <span className="gradient-text-primary">What creators say</span>
+              <span className="gradient-text-primary">What Creators Say ?</span>
             </h2>
           </div>
 
