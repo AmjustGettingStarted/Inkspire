@@ -125,15 +125,16 @@ const Home = () => {
       {/* <div className="fixed inset-0 z-0 pointer-events-none"></div> */}
 
       {/* Hero Section */}
-      <section className="relative z-10 mt-48 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div className="space-y-6 sm:space-y-8 text-center lg:text-left">
-            <div className="space-y-4 sm:space-y-6">
-              <h1 className="text-7xl lg:text-8xl font-black leading-none tracking-tight">
-                <MorphingText texts={texts} />
+      <section className="relative z-10 mt-32 sm:mt-40 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          {/* LEFT: Text & Buttons */}
+          <div className="space-y-6 sm:space-y-8 text-center w-full lg:text-left">
+            <div className="space-y-4 lg:space-y-6">
+              <h1 className="font-black leading-tight sm:leading-none tracking-tight">
+                <MorphingText texts={texts} className="text-6xl sm:text-7xl lg:text-8xl" />
               </h1>
 
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-300 font-light leading-relaxed max-w-2xl md:max-w-none">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 font-light leading-relaxed max-w-xl md:max-w-2xl mx-auto lg:mx-0">
                 The AI-powered platform that turns your ideas into{" "}
                 <span className="text-purple-300 font-semibold">
                   engaging content
@@ -142,7 +143,8 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 items-center lg:items-start">
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start">
               <Link href="/dashboard">
                 <Button
                   size="xl"
@@ -150,7 +152,7 @@ const Home = () => {
                   className="rounded-full w-full sm:w-auto text-white"
                 >
                   Start Creating for Free
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
               </Link>
               <Link href="/feed">
@@ -164,7 +166,8 @@ const Home = () => {
               </Link>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 sm:gap-8 text-sm text-slate-400">
+            {/* Avatars + Rating */}
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-8 text-sm text-slate-400">
               <div className="flex items-center gap-2">
                 <div className="flex -space-x-2">
                   {[
@@ -184,7 +187,7 @@ const Home = () => {
                     </div>
                   ))}
                 </div>
-                <span>1k+ creators</span>
+                <span className="text-xs sm:text-sm">1k+ creators</span>
               </div>
               <div className="flex items-center gap-1">
                 {[...Array(5)].map((_, i) => (
@@ -193,19 +196,18 @@ const Home = () => {
                     className="w-3 h-3 sm:w-4 sm:h-4 fill-yellow-400 text-yellow-400"
                   />
                 ))}
-                <span className="ml-1">4.9/5</span>
+                <span className="ml-1 text-xs sm:text-sm">4.9/5</span>
               </div>
             </div>
           </div>
 
-          {/* Interactive 3D-style elements */}
-          <div>
+          {/* RIGHT: Responsive Image */}
+          <div className="relative w-full max-w-[600px] mx-auto aspect-[1/1] lg:aspect-[4/3] xl:aspect-[16/9]">
             <Image
-              src="/banner.png"
+              src="/banner.jpg"
               alt="Platform Banner"
-              width={500}
-              height={700}
-              className="w-full h-auto object-contain"
+              fill
+              className="object-contain lg:object-cover rounded-2xl"
               priority
             />
           </div>
