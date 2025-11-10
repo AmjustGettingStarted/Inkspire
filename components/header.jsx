@@ -39,14 +39,14 @@ export default function Header() {
       <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-full px-4 sm:px-6 md:px-8 py-3 flex items-center justify-between gap-2">
         {/* Logo */}
         <Link href={isAuthenticated ? "/feed" : "/"} className="flex-shrink-0">
-          {/* <Image
+          <Image
             src="/logo.png"
             alt="InkSpire Logo"
             width={96}
-            height={32}
+            height={48}
             className="h-8 sm:h-10 w-auto object-contain"
-          /> */}
-          <p>INKSPIRE</p>
+          />
+          {/* <p>INKSPIRE</p> */}
         </Link>
 
         {/* Navigation for landing page only - Hidden on mobile to save space */}
