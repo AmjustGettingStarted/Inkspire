@@ -1,6 +1,6 @@
 # Inkspire
 
-![Inkspire Banner](assets/banner.png)
+![Inkspire Banner](assets/banner.jpg)
 
 [![License](https://img.shields.io/github/license/AmjustGettingStarted/Inkspire)](./LICENSE)
 [![Issues](https://img.shields.io/github/issues/AmjustGettingStarted/Inkspire)](https://github.com/AmjustGettingStarted/Inkspire/issues)
