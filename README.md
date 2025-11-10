@@ -124,9 +124,9 @@ npm run dev
   gap: 10px;
   flex-wrap: nowrap;
 ">
-  <img src="public/mobile1.png" alt="Mobile UI" width="200"/>
-  <img src="public/mobile2.png" alt="Mobile Feed" width="200"/>
-  <img src="public/mobile3.png" alt="Mobile Profile" width="20f0"/>
+  <img src="public/mobile1.png" alt="Mobile UI" height="400" style="object-fit: contain;"/>
+  <img src="public/mobile2.png" alt="Mobile Feed" height="400" style="object-fit: contain;"/>
+  <img src="public/mobile3.png" alt="Mobile Profile" height="400" style="object-fit: contain;"/>
 </p>
 
 ---
