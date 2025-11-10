@@ -2,7 +2,6 @@
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { Star } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-
 import { useEffect, useState } from "react";
 
 export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
@@ -22,7 +21,7 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
 
   useEffect(() => {
     if (autoplay) {
-      const interval = setInterval(handleNext, 5000);
+      const interval = setInterval(handleNext, 7000); // smoother pacing
       return () => clearInterval(interval);
     }
   }, [autoplay]);
@@ -30,6 +29,7 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
   const randomRotateY = () => {
     return Math.floor(Math.random() * 21) - 10;
   };
+
   return (
     <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
       <div className="relative grid grid-cols-1 gap-20 md:grid-cols-2">
@@ -62,8 +62,8 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
                     rotate: randomRotateY(),
                   }}
                   transition={{
-                    duration: 0.4,
-                    ease: "easeInOut",
+                    duration: 0.8, // smoother fade
+                    ease: [0.25, 0.1, 0.25, 1], // cubic-bezier smooth
                   }}
                   className="absolute inset-0 origin-bottom"
                 >
@@ -80,24 +80,16 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
             </AnimatePresence>
           </div>
         </div>
+
         <div className="flex flex-col justify-between py-4">
           <motion.div
             key={active}
-            initial={{
-              y: 20,
-              opacity: 0,
-            }}
-            animate={{
-              y: 0,
-              opacity: 1,
-            }}
-            exit={{
-              y: -20,
-              opacity: 0,
-            }}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -20, opacity: 0 }}
             transition={{
-              duration: 0.2,
-              ease: "easeInOut",
+              duration: 0.5, // smoother text switch
+              ease: "easeOut",
             }}
           >
             <h3 className="text-2xl font-bold text-black dark:text-white">
@@ -106,6 +98,7 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
             <p className="text-sm text-gray-500 dark:text-neutral-500">
               {testimonials[active].role}
             </p>
+
             <motion.p className="mt-8 text-lg text-gray-500 dark:text-neutral-300">
               {testimonials[active].content.split(" ").map((word, index) => (
                 <motion.span
@@ -121,9 +114,9 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
                     y: 0,
                   }}
                   transition={{
-                    duration: 0.2,
-                    ease: "easeInOut",
-                    delay: 0.02 * index,
+                    duration: 0.4, // slower, smoother word fade
+                    ease: "easeOut",
+                    delay: 0.03 * index, // slightly more natural stagger
                   }}
                   className="inline-block"
                 >
@@ -132,6 +125,7 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
               ))}
             </motion.p>
           </motion.div>
+
           <motion.p className="flex items-center gap-1 mb-4">
             {[...Array(testimonials[active].rating)].map((_, i) => (
               <Star
@@ -140,6 +134,7 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
               />
             ))}
           </motion.p>
+
           <div className="flex gap-4 pt-12 md:pt-0">
             <button
               onClick={handlePrev}
