@@ -126,7 +126,7 @@ npm run dev
 ">
   <img src="public/mobile1.png" alt="Mobile UI" width="200"/>
   <img src="public/mobile2.png" alt="Mobile Feed" width="200"/>
-  <img src="public/mobile3.png" alt="Mobile Profile" width="150" height="200"/>
+  <img src="public/mobile3.png" alt="Mobile Profile" width="20f0"/>
 </p>
 
 ---
