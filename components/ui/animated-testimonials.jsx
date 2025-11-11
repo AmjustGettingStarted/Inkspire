@@ -31,8 +31,8 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
   };
 
   return (
-    <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
-      <div className="relative grid grid-cols-1 gap-20 md:grid-cols-2">
+    <div className="mx-auto max-w-sm px-4 py-6 md:py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
+      <div className="relative grid grid-cols-1 gap-8 md:gap-20 md:grid-cols-2">
         <div>
           <div className="relative h-80 w-full">
             <AnimatePresence>
@@ -81,7 +81,7 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
           </div>
         </div>
 
-        <div className="flex flex-col justify-between py-4">
+        <div className="flex flex-col justify-between py-4 gap-4">
           <motion.div
             key={active}
             initial={{ y: 20, opacity: 0 }}
@@ -99,7 +99,7 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
               {testimonials[active].role}
             </p>
 
-            <motion.p className="mt-8 text-lg text-gray-500 dark:text-neutral-300">
+            <motion.p className="mt-4 md:mt-8 text-lg text-gray-500 dark:text-neutral-300">
               {testimonials[active].content.split(" ").map((word, index) => (
                 <motion.span
                   key={index}
@@ -135,7 +135,7 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
             ))}
           </motion.p>
 
-          <div className="flex gap-4 pt-12 md:pt-0">
+          <div className="flex gap-4">
             <button
               onClick={handlePrev}
               className="group/button flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
