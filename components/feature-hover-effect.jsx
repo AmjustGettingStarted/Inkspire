@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
@@ -16,14 +17,17 @@ export const HoverEffect = ({ items, className }) => {
         <a
           href={item?.link || "#"}
           key={item?.title || idx}
-          className="relative group block p-2 h-full w-full"
+          className={cn(
+            "relative group block p-2 h-full w-full",
+            idx >= 5 ? "hidden md:block" : "" // hide after 5 on mobile
+          )}
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
           <AnimatePresence>
             {hoveredIndex === idx && (
               <motion.span
-                className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block rounded-3xl"
+                className="absolute inset-0 h-full w-full bg-blue-900/20 dark:bg-blue-600/40 block rounded-3xl"
                 layoutId="hoverBackground"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1, transition: { duration: 0.5 } }}
