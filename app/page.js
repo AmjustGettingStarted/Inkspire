@@ -25,6 +25,7 @@ import Particles from "@/components/reactbits/Particles";
 import DarkVeil from "@/components/reactbits/DarkVeil";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { MorphingText } from "@/components/ui/morphing-text";
+import { HoverEffect } from "@/components/feature-hover-effect";
 
 const texts = [
   "Imagine",
@@ -131,7 +132,10 @@ const Home = () => {
           <div className="space-y-6 sm:space-y-8 text-center w-full lg:text-left">
             <div className="space-y-4 lg:space-y-6">
               <h1 className="font-black leading-tight sm:leading-none tracking-tight">
-                <MorphingText texts={texts} className="text-6xl sm:text-7xl lg:text-8xl" />
+                <MorphingText
+                  texts={texts}
+                  className="text-6xl sm:text-7xl lg:text-8xl"
+                />
               </h1>
 
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 font-light leading-relaxed max-w-xl md:max-w-2xl mx-auto lg:mx-0">
@@ -228,53 +232,7 @@ const Home = () => {
               The complete AI toolkit for creators to write, publish, and grow.
             </p>
           </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {features.map((feature, index) => (
-              <Card
-                key={index}
-                className="group transition-all duration-500 ease-in-out hover:scale-105 card-glass"
-              >
-                <CardContent className="p-6 sm:p-8">
-                  {/* Icon Box */}
-                  <div
-                    className="
-            w-12 h-12 sm:w-16 sm:h-16 
-            rounded-2xl flex items-center justify-center mb-4 sm:mb-6
-            bg-black text-white border border-white/10
-            transition-all duration-500 ease-in-out
-            group-hover:bg-white group-hover:text-black group-hover:border-white
-            group-hover:scale-110
-          "
-                  >
-                    <feature.icon className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-500 ease-in-out" />
-                  </div>
-
-                  {/* Title */}
-                  <CardTitle
-                    className="
-            text-lg sm:text-xl mb-3 sm:mb-4 text-white
-            transition-colors duration-500 ease-in-out
-            group-hover:text-white
-          "
-                  >
-                    {feature.title}
-                  </CardTitle>
-
-                  {/* Description */}
-                  <CardDescription
-                    className="
-            text-sm sm:text-base text-gray-400
-            transition-colors duration-500 ease-in-out
-            group-hover:text-gray-200
-          "
-                  >
-                    {feature.desc}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <HoverEffect items={features} />
         </div>
       </section>
 
@@ -291,7 +249,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-8">
+          <div className="flex flex-col lg:flex-row gap-8 lg:items-center">
             <div className="lg:w-1/3">
               <div className="space-y-4">
                 {platformTabs.map((tab, index) => (
