@@ -249,7 +249,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-8">
+          <div className="flex flex-col lg:flex-row gap-8 lg:items-center">
             <div className="lg:w-1/3">
               <div className="space-y-4">
                 {platformTabs.map((tab, index) => (
