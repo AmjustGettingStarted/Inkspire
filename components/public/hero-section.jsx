@@ -19,12 +19,13 @@ export default function HeroSection() {
 
         {/* Bottom Shadow Overlay for Text Contrast */}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none z-10" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-black pointer-events-none z-10" />
       </div>
 
       {/* Content Container - Fixed to Bottom Left */}
       <div className="relative z-20 mt-auto max-w-2xl space-y-4 pb-4">
         {/* Solid White Headline */}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-tight">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl capitalize font-semibold tracking-tight text-white leading-tight">
           Create <span className="text-purple-600">AI</span> content <br />
           without limits.
         </h1>
@@ -41,7 +42,7 @@ export default function HeroSection() {
           {/* Primary CTA (Purple Rectangle) */}
           <Button
             asChild
-            className="bg-purple-600 hover:bg-purple-600 text-white font-medium px-7 py-6 rounded-sm text-sm transition-transform duration-500 hover:scale-[1.02] active:scale-[0.98] border-0 shadow-lg shadow-purple-950/40"
+            className="bg-purple-600 hover:bg-purple-600 text-white font-medium px-7 py-6 rounded-3xl text-sm transition-transform duration-500 hover:scale-[1.02] active:scale-[0.98] border-0 shadow-lg shadow-purple-950/40"
           >
             <Link href="/dashboard">Start Creating for Free</Link>
           </Button>
@@ -49,7 +50,7 @@ export default function HeroSection() {
           {/* Secondary CTA (White Rectangle) */}
           <Button
             asChild
-            className="bg-white hover:bg-white text-black font-medium px-7 py-6 rounded-sm text-sm transition-transform duration-500 hover:scale-[1.02] active:scale-[0.98] border-0 shadow-md"
+            className="bg-white hover:bg-white text-black font-medium px-7 py-6 rounded-3xl text-sm transition-transform duration-500 hover:scale-[1.02] active:scale-[0.98] border-0 shadow-md"
           >
             <Link href="/feed">Explore the Feed</Link>
           </Button>

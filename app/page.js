@@ -11,15 +11,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  features,
-  platformTabs,
-  socialProofStats,
-  testimonials,
-} from "@/lib/data";
+import { platformTabs, socialProofStats, testimonials } from "@/lib/data";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
-import { HoverEffect } from "@/components/feature-hover-effect";
 import HeroSection from "@/components/public/hero-section";
+import FeaturesPremium from "@/components/public/features-premium";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
@@ -29,23 +24,7 @@ export default function Home() {
       {/* Hero Section */}
       <HeroSection />
 
-      {/* Features Grid */}
-      <section
-        id="features"
-        className="mt-14 z-10 py-16 sm:py-24 px-4 sm:px-6 bg-black border-y border-purple-900/20 relative"
-      >
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-5xl font-black mb-4">
-              <span className="gradient-text-primary">Everything you need</span>
-            </h2>
-            <p className="text-lg text-slate-400 max-w-3xl mx-auto">
-              The complete AI toolkit for creators to write, publish, and grow.
-            </p>
-          </div>
-          <HoverEffect items={features} />
-        </div>
-      </section>
+      <FeaturesPremium />
 
       {/* Platform Showcase */}
       <section className="relative z-10 py-16 sm:py-24 px-4 sm:px-6">
