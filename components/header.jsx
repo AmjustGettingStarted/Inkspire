@@ -7,7 +7,7 @@ import { useStoreUser } from "@/hooks/use-store-user";
 import { BarLoader } from "react-spinners";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "./ui/button";
-import { LayoutDashboard } from "lucide-react";
+import { LayoutDashboard, Sparkles } from "lucide-react";
 import { Authenticated, Unauthenticated } from "convex/react";
 import Image from "next/image";
 
@@ -16,27 +16,23 @@ export default function Header() {
   const path = usePathname();
   const router = useRouter();
 
-  // Redirect authenticated users from landing page to feed
   useEffect(() => {
     if (!isLoading && isAuthenticated && path === "/") {
       router.push("/feed");
     }
   }, [isLoading, isAuthenticated, path, router]);
 
-  // Hide header on dashboard and public profile/post pages
   if (path.includes("/dashboard")) {
     return null;
   }
 
-  // Hide header on public profile and post pages (but not on feed)
   if (path !== "/" && path !== "/feed" && path.split("/").length >= 2) {
     return null;
   }
 
   return (
-    <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-3xl px-4">
-      {/* Center - Glass Navigation Container */}
-      <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-full px-4 sm:px-6 md:px-8 py-3 flex items-center justify-between gap-2">
+    <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-4xl px-4">
+      <div className="backdrop-blur-xl bg-black/60 border border-white/10 rounded-full px-5 sm:px-7 py-3 flex items-center justify-between gap-4 shadow-2xl">
         {/* Logo */}
         <Link href={isAuthenticated ? "/feed" : "/"} className="flex-shrink-0">
           <Image
@@ -44,23 +40,22 @@ export default function Header() {
             alt="InkSpire Logo"
             width={96}
             height={48}
-            className="h-8 sm:h-10 w-auto object-contain"
+            className="h-8 sm:h-9 w-auto object-contain"
           />
-          {/* <p>INKSPIRE</p> */}
         </Link>
 
-        {/* Navigation for landing page only - Hidden on mobile to save space */}
+        {/* Navigation */}
         {path === "/" && (
-          <div className="hidden lg:flex space-x-6 flex-1 justify-center">
+          <div className="hidden lg:flex items-center space-x-8 flex-1 justify-center text-sm font-medium">
             <Link
               href="#features"
-              className="text-white font-medium transition-all duration-300 hover:text-purple-300 cursor-pointer"
+              className="text-gray-300 transition-colors duration-300 hover:text-white cursor-pointer"
             >
               Features
             </Link>
             <Link
               href="#testimonials"
-              className="text-white font-medium transition-all duration-300 hover:text-purple-300 cursor-pointer"
+              className="text-gray-300 transition-colors duration-300 hover:text-white cursor-pointer"
             >
               Testimonials
             </Link>
@@ -68,9 +63,8 @@ export default function Header() {
         )}
 
         {/* Auth Actions */}
-        <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+        <div className="flex items-center gap-3 flex-shrink-0">
           <Authenticated>
-            {/* Show Dashboard link on feed page */}
             {path === "/feed" && (
               <Link href="/dashboard">
                 <Button variant="outline" className="hidden sm:flex" size="sm">
@@ -95,14 +89,21 @@ export default function Header() {
 
           <Unauthenticated>
             <SignInButton>
-              <Button variant="glass" className="" size="sm">
+              <Button
+                size="sm"
+                className="bg-transparent hover:bg-transparent text-gray-300 hover:text-purple-300 hover:[text-shadow:0_0_12px_rgba(168,85,247,0.8)] cursor-pointer text-sm font-medium transition-all duration-300 shadow-none border-0"
+              >
                 Sign In
               </Button>
             </SignInButton>
 
             <SignUpButton>
-              <Button variant="primary" size="sm" className="whitespace-nowrap">
-                Get Started
+              <Button
+                size="lg"
+                className="relative group cursor-pointer inline-flex items-center justify-center gap-1.5 px-5 py-2 text-xs font-semibold text-white bg-black/80 rounded-full border border-purple-500/80 shadow-[0_0_15px_rgba(168,85,247,0.4)] hover:shadow-[0_0_25px_rgba(168,85,247,0.7)] hover:border-purple-400 hover:bg-purple-950/30 transition-all duration-300"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
+                <span>Get Started</span>
               </Button>
             </SignUpButton>
           </Unauthenticated>
