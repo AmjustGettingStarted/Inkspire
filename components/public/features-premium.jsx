@@ -124,7 +124,10 @@ function FeatureTile({ feature, visual, layout, index, reduceMotion }) {
           y: event.clientY - rect.top,
         });
       }}
-      className={cn("group relative overflow-hidden rounded-[28px] p-px", layout.span)}
+      className={cn(
+        "group relative overflow-hidden rounded-[28px] p-px",
+        layout.span,
+      )}
     >
       <motion.div
         aria-hidden="true"
@@ -167,7 +170,7 @@ function FeatureTile({ feature, visual, layout, index, reduceMotion }) {
             decoding="async"
             className={cn(
               "w-full transition-transform duration-500 ease-out group-hover:scale-[1.035]",
-              layout.imageClassName
+              layout.imageClassName,
             )}
           />
         </div>
@@ -270,15 +273,14 @@ export default function FeaturesPremium() {
                     The complete AI toolkit for creators to write, publish, and
                     grow.
                   </p>
-
                   <div className="mt-5 flex flex-wrap items-center justify-center gap-2.5 lg:justify-start">
-                    <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-slate-300">
+                    <span className="rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-purple-300 shadow-[0_0_12px_-3px_rgba(168,85,247,0.3)] transition-colors hover:border-purple-500/60 hover:bg-purple-500/20">
                       Write
                     </span>
-                    <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-slate-300">
+                    <span className="rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-purple-300 shadow-[0_0_12px_-3px_rgba(168,85,247,0.3)] transition-colors hover:border-purple-500/60 hover:bg-purple-500/20">
                       Publish
                     </span>
-                    <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-slate-300">
+                    <span className="rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-purple-300 shadow-[0_0_12px_-3px_rgba(168,85,247,0.3)] transition-colors hover:border-purple-500/60 hover:bg-purple-500/20">
                       Grow
                     </span>
                   </div>
