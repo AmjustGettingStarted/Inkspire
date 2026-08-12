@@ -1,24 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+
 import { platformTabs, socialProofStats, testimonials } from "@/lib/data";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import HeroSection from "@/components/public/hero-section";
 import FeaturesPremium from "@/components/public/features-premium";
+import HowItWorksAccordion from "@/components/public/how-it-works-accordion";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState(0);
-
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
       {/* Hero Section */}
@@ -29,62 +22,23 @@ export default function Home() {
       {/* Platform Showcase */}
       <section className="relative z-10 py-16 sm:py-24 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-5xl font-black mb-4">
-              <span className="gradient-text-primary">How it works</span>
-            </h2>
-            <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-              Three powerful modules working together to supercharge your
-              content creation.
-            </p>
-          </div>
-
-          <div className="flex flex-col lg:flex-row gap-8 lg:items-center">
-            <div className="lg:w-1/3 space-y-4">
-              {platformTabs.map((tab, index) => (
-                <Button
-                  key={index}
-                  variant={activeTab === index ? "outline" : "ghost"}
-                  onClick={() => setActiveTab(index)}
-                  className="w-full justify-start h-auto p-6 cursor-pointer"
-                >
-                  <div className="flex items-center gap-4">
-                    <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center ${activeTab === index ? "bg-white text-black" : "bg-muted"}`}
-                    >
-                      <tab.icon className="w-6 h-6" />
-                    </div>
-                    <div className="text-left">
-                      <h3 className="font-bold text-lg">{tab.title}</h3>
-                    </div>
-                  </div>
-                </Button>
-              ))}
-            </div>
-
-            <div className="lg:w-2/3">
-              <Card className="bg-gray-900/50 border-gray-800">
-                <CardHeader>
-                  <CardTitle className="text-2xl text-white">
-                    {platformTabs[activeTab].title}
-                  </CardTitle>
-                  <CardDescription className="text-lg text-gray-400">
-                    {platformTabs[activeTab].description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    {platformTabs[activeTab].features.map((feature, index) => (
-                      <div key={index} className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
-                        <span className="text-gray-300">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+          <div className="mb-12 text-center">
+            <div className="mx-auto max-w-3xl">
+              <div className="mb-3 text-xs uppercase tracking-widest text-zinc-500">
+                — Workflow —
+              </div>
+              <h2 className="text-4xl font-black uppercase tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">
+                <span className="text-white">How it </span>
+                <span className="text-purple-600">Works</span>
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-zinc-400">
+                Five interconnected modules working together to scale your
+                content strategy.
+              </p>
             </div>
           </div>
+
+          <HowItWorksAccordion items={platformTabs} defaultIndex={0} />
         </div>
       </section>
 
