@@ -67,9 +67,12 @@ export default function Header() {
           <Authenticated>
             {path === "/feed" && (
               <Link href="/dashboard">
-                <Button variant="outline" className="hidden sm:flex" size="sm">
-                  <LayoutDashboard className="h-4 w-4" />
-                  <span className="hidden md:inline ml-2">Dashboard</span>
+                <Button
+                  size="sm"
+                  className="relative group cursor-pointer hidden sm:inline-flex items-center justify-center gap-2 px-4 py-2 text-xs font-semibold text-white bg-black/80 rounded-full border border-purple-500/80 shadow-[0_0_15px_rgba(168,85,247,0.4)] hover:shadow-[0_0_25px_rgba(168,85,247,0.7)] hover:border-purple-400 hover:bg-purple-950/30 transition-all duration-300"
+                >
+                  <LayoutDashboard className="w-3.5 h-3.5 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
+                  <span className="hidden md:inline">Dashboard</span>
                 </Button>
               </Link>
             )}
