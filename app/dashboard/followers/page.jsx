@@ -18,7 +18,7 @@ const UserCard = ({
   onToggle,
 }) => {
   return (
-    <div className="flex items-center justify-between p-3 bg-slate-800/30 rounded-lg">
+    <div className="flex items-center justify-between p-3 card-flat">
       {/* Avatar + Info */}
       <div className="flex items-center space-x-3">
         <Link href={`/${user.username}`}>
@@ -32,7 +32,7 @@ const UserCard = ({
                 sizes="40px"
               />
             ) : (
-              <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-sm font-bold">
+              <div className="w-full h-full rounded-full bg-purple-600 flex items-center justify-center text-sm font-bold text-white">
                 {user.name.charAt(0).toUpperCase()}
               </div>
             )}
@@ -40,11 +40,11 @@ const UserCard = ({
         </Link>
         <Link href={user.username ? `/${user.username}` : ""}>
           <div className="cursor-pointer">
-            <p className="font-medium text-white hover:text-purple-300">
+            <p className="font-medium text-white hover:text-purple-400 transition-colors">
               {user.name}
             </p>
             {user.username && (
-              <p className="text-sm text-slate-400">@{user.username}</p>
+              <p className="text-sm text-zinc-500">@{user.username}</p>
             )}
           </div>
         </Link>
@@ -58,7 +58,7 @@ const UserCard = ({
             disabled={isLoading}
             variant="outline"
             size="sm"
-            className="border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white"
+            className="border-purple-600/50 text-purple-400 hover:bg-purple-600 hover:text-white hover:border-purple-600"
           >
             {isLoading ? (
               <Loader2 className="h-4 w-4 animate-spin" />
@@ -76,7 +76,7 @@ const UserCard = ({
           disabled={isLoading}
           variant="ghost"
           size="sm"
-          className="text-slate-400 hover:text-red-400"
+          className="text-zinc-500 hover:text-red-400 hover:bg-red-500/10"
         >
           {isLoading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -98,17 +98,17 @@ const FollowersPage = () => {
   // Data fetching
   const { data: followers, isLoading: followersLoading } = useConvexQuery(
     api.follows.getMyFollowers,
-    { limit: 100 }
+    { limit: 100 },
   );
 
   const { data: following, isLoading: followingLoading } = useConvexQuery(
     api.follows.getMyFollowing,
-    { limit: 100 }
+    { limit: 100 },
   );
 
   // Mutations
   const { mutate: toggleFollow, isLoading: isToggling } = useConvexMutation(
-    api.follows.toggleFollow
+    api.follows.toggleFollow,
   );
 
   // Handle follow/unfollow
@@ -127,7 +127,7 @@ const FollowersPage = () => {
     return (users || []).filter(
       (user) =>
         user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.username.toLowerCase().includes(searchQuery.toLowerCase())
+        user.username.toLowerCase().includes(searchQuery.toLowerCase()),
     );
   };
 
@@ -137,30 +137,30 @@ const FollowersPage = () => {
   const isLoading = followersLoading || followingLoading;
 
   return (
-    <div className="space-y-6 p-4 lg:p-8">
+    <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold gradient-text-primary">
+        <h1 className="text-3xl font-bold heading-primary">
           Followers & Following
         </h1>
-        <p className="text-slate-400 mt-2">
+        <p className="text-zinc-500 mt-2">
           Manage your connections and discover new creators
         </p>
       </div>
 
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-zinc-500" />
         <Input
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search users..."
-          className="pl-10 bg-slate-800 border-slate-600"
+          className="pl-10 bg-[#0d0d10] border-white/10"
         />
       </div>
 
       {/* Tabs */}
       <Tabs defaultValue="followers">
-        <TabsList className="grid w-full grid-cols-2 bg-slate-900">
+        <TabsList className="grid w-full grid-cols-2 bg-[#0d0d10] border border-white/[0.07]">
           <TabsTrigger value="followers">
             Followers ({filteredFollowers.length})
           </TabsTrigger>
@@ -170,7 +170,7 @@ const FollowersPage = () => {
         </TabsList>
 
         {/* Followers Tab */}
-        <TabsContent value="followers" className="mt-6">
+        <TabsContent value="followers" className="mt-6 space-y-2">
           {filteredFollowers.map((user) => (
             <UserCard
               key={user._id}
@@ -183,7 +183,7 @@ const FollowersPage = () => {
         </TabsContent>
 
         {/* Following Tab */}
-        <TabsContent value="following" className="mt-6">
+        <TabsContent value="following" className="mt-6 space-y-2">
           {filteredFollowing.map((user) => (
             <UserCard
               key={user._id}
