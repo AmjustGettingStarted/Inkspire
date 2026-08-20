@@ -30,10 +30,10 @@ export function AppSidebar({ isCollapsed, setIsCollapsed }) {
   const ActiveGlow = () => (
     <>
       {/* Right-to-left subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-l from-pink-500/25 via-pink-500/5 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-l from-purple-500/25 via-purple-500/5 to-transparent pointer-events-none" />
 
-      {/* Pink vertical indicator pill */}
-      <div className="absolute right-1.5 top-1/2 -translate-y-1/2 w-1.5 h-6 rounded-full bg-pink-500 shadow-[0_0_12px_#ec4899] pointer-events-none" />
+      {/* Purple vertical indicator pill */}
+      <div className="absolute right-1.5 top-1/2 -translate-y-1/2 w-1.5 h-6 rounded-full bg-purple-500 shadow-[0_0_12px_#a855f7] pointer-events-none" />
     </>
   );
 
@@ -44,7 +44,7 @@ export function AppSidebar({ isCollapsed, setIsCollapsed }) {
         {/* Top Brand Logo */}
         <div className="flex flex-col items-center gap-3">
           <Link
-            href="/dashboard"
+            href="/feed"
             className="flex h-10 w-10 items-center justify-center p-1 cursor-pointer"
           >
             <Image
@@ -125,7 +125,7 @@ export function AppSidebar({ isCollapsed, setIsCollapsed }) {
               appearance={{
                 elements: {
                   avatarBox:
-                    "w-9 h-9 rounded-full border border-pink-500/40 cursor-pointer",
+                    "w-9 h-9 rounded-full border border-purple-500/40 cursor-pointer",
                 },
               }}
               afterSignOutUrl="/"
