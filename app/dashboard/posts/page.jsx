@@ -94,26 +94,26 @@ export default function PostsPage() {
     return (
       <div className="flex items-center justify-center min-h-96">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-400 mx-auto"></div>
-          <p className="text-slate-400 mt-4">Loading your posts...</p>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500 mx-auto"></div>
+          <p className="text-zinc-500 mt-4">Loading your posts...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="space-y-6 p-4 lg:p-8">
+    <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold gradient-text-primary">My Posts</h1>
-          <p className="text-slate-400 mt-2">
+          <h1 className="text-3xl font-bold heading-primary">My Posts</h1>
+          <p className="text-zinc-500 mt-2">
             Manage and track your content performance
           </p>
         </div>
 
         <Link href="/dashboard/create">
-          <Button variant="primary">
+          <Button className="bg-purple-600 hover:bg-purple-500 text-white">
             <PlusCircle className="h-4 w-4 mr-2" />
             Create New Post
           </Button>
@@ -121,23 +121,23 @@ export default function PostsPage() {
       </div>
 
       {/* Filters and Search */}
-      <Card className="card-glass">
+      <Card className="card-flat">
         <CardContent className="p-6">
           <div className="flex flex-col md:flex-row gap-4">
             {/* Search */}
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-zinc-500" />
               <Input
                 placeholder="Search posts..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-slate-800 border-slate-600"
+                className="pl-10 bg-[#0d0d10] border-white/10 text-white"
               />
             </div>
 
             {/* Status Filter */}
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-full md:w-40 bg-slate-800 border-slate-600">
+              <SelectTrigger className="w-full md:w-40 bg-[#0d0d10] border-white/10">
                 <Filter className="h-4 w-4 mr-2" />
                 <SelectValue />
               </SelectTrigger>
@@ -150,7 +150,7 @@ export default function PostsPage() {
 
             {/* Sort */}
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-full md:w-40 bg-slate-800 border-slate-600">
+              <SelectTrigger className="w-full md:w-40 bg-[#0d0d10] border-white/10">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -167,22 +167,22 @@ export default function PostsPage() {
 
       {/* Posts Grid */}
       {filteredPosts.length === 0 ? (
-        <Card className="card-glass">
+        <Card className="card-flat">
           <CardContent className="p-12 text-center">
-            <FileText className="h-12 w-12 text-slate-400 mx-auto mb-4" />
+            <FileText className="h-12 w-12 text-zinc-600 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-white mb-2">
               {searchQuery || statusFilter !== "all"
                 ? "No posts found"
                 : "No posts yet"}
             </h3>
-            <p className="text-slate-400 mb-6">
+            <p className="text-zinc-500 mb-6">
               {searchQuery || statusFilter !== "all"
                 ? "Try adjusting your search or filters"
                 : "Create your first post to get started"}
             </p>
             {!searchQuery && statusFilter === "all" && (
               <Link href="/dashboard/create">
-                <Button variant="primary">
+                <Button className="bg-purple-600 hover:bg-purple-500 text-white">
                   <PlusCircle className="h-4 w-4 mr-2" />
                   Create Your First Post
                 </Button>

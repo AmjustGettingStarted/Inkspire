@@ -26,7 +26,7 @@ const usernameSchema = z.object({
     .max(20, "Username must be less than 20 characters")
     .regex(
       /^[a-zA-Z0-9_-]+$/,
-      "Username can only contain letters, numbers, underscores, and hyphens"
+      "Username can only contain letters, numbers, underscores, and hyphens",
     ),
 });
 
@@ -35,7 +35,7 @@ export default function SettingsPage() {
 
   // Data fetching
   const { data: currentUser, isLoading } = useConvexQuery(
-    api.users.getCurrentUser
+    api.users.getCurrentUser,
   );
   const updateUsername = useConvexMutation(api.users.updateUsername);
 
@@ -84,31 +84,31 @@ export default function SettingsPage() {
     return (
       <div className="flex items-center justify-center min-h-96">
         <div className="text-center">
-          <Loader2 className="h-8 w-8 animate-spin text-purple-400 mx-auto" />
-          <p className="text-slate-400 mt-4">Loading settings...</p>
+          <Loader2 className="h-8 w-8 animate-spin text-purple-500 mx-auto" />
+          <p className="text-zinc-500 mt-4">Loading settings...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="space-y-8 p-4 lg:p-8">
+    <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold gradient-text-primary">Settings</h1>
-        <p className="text-slate-400 mt-2">
+        <h1 className="text-3xl font-bold heading-primary">Settings</h1>
+        <p className="text-zinc-500 mt-2">
           Manage your profile and account preferences
         </p>
       </div>
 
       {/* Username Settings */}
-      <Card className="card-glass max-w-2xl">
+      <Card className="card-flat max-w-2xl">
         <CardHeader>
           <CardTitle className="text-white flex items-center">
-            <User className="h-5 w-5 mr-2" />
+            <User className="h-5 w-5 mr-2 text-purple-400" />
             Username Settings
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-zinc-500">
             Set your unique username for your public profile
           </CardDescription>
         </CardHeader>
@@ -123,19 +123,19 @@ export default function SettingsPage() {
                 id="username"
                 {...register("username")}
                 placeholder="Enter your username"
-                className="bg-slate-800 border-slate-600 text-white"
+                className="bg-[#0d0d10] border-white/10 text-white"
               />
 
               {/* Current Username */}
               {currentUser?.username && (
-                <div className="text-sm text-slate-400">
+                <div className="text-sm text-zinc-500">
                   Current username:{" "}
                   <span className="text-white">@{currentUser.username}</span>
                 </div>
               )}
 
               {/* Username Help */}
-              <div className="text-xs text-slate-500">
+              <div className="text-xs text-zinc-600">
                 3-20 characters, letters, numbers, underscores, and hyphens only
               </div>
 
@@ -152,8 +152,7 @@ export default function SettingsPage() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                variant="primary"
-                className="w-full sm:w-auto"
+                className="w-full sm:w-auto bg-purple-600 hover:bg-purple-500 text-white"
               >
                 {isSubmitting ? (
                   <>

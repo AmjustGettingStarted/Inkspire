@@ -13,6 +13,7 @@ import {
   Bookmark,
   MoreHorizontal,
   Plus,
+  Check,
   TrendingUp,
   Sparkles,
   Loader2,
@@ -116,7 +117,6 @@ function PostCardPremium({ post, index }) {
         </Link>
 
         <div className="flex items-center gap-2">
-          {/* Follow / Subscribe Button */}
           <button
             type="button"
             className="rounded-full border border-purple-500/40 bg-purple-500/10 px-3.5 py-1 text-xs font-semibold text-purple-300 transition-colors hover:bg-purple-600 hover:text-white"
@@ -181,7 +181,6 @@ function PostCardPremium({ post, index }) {
       {/* 5. Footer Actions & Views */}
       <div className="mt-4 flex items-center justify-between border-t border-white/[0.06] pt-3 text-xs text-slate-400">
         <div className="flex items-center gap-4">
-          {/* Comments */}
           <button
             type="button"
             className="flex items-center gap-1.5 transition-colors hover:text-purple-300"
@@ -190,7 +189,6 @@ function PostCardPremium({ post, index }) {
             <span>{post.commentCount || 213}</span>
           </button>
 
-          {/* Bookmark */}
           <button
             type="button"
             onClick={() => setSaved((v) => !v)}
@@ -203,7 +201,6 @@ function PostCardPremium({ post, index }) {
             <span>{post.bookmarkCount || 467}</span>
           </button>
 
-          {/* Share */}
           <button
             type="button"
             className="flex items-center gap-1.5 transition-colors hover:text-purple-300"
@@ -213,7 +210,6 @@ function PostCardPremium({ post, index }) {
           </button>
         </div>
 
-        {/* View Count */}
         <div className="flex items-center gap-1 text-slate-500">
           <span>👁</span>
           <span>{post.views || "2.5k"}</span>
@@ -225,19 +221,19 @@ function PostCardPremium({ post, index }) {
 
 export default function FeedPage() {
   const { user: currentUser } = useUser();
-  const [activeTab, setActiveTab] = useState("feed"); // "feed" or "trending"
+  const [activeTab, setActiveTab] = useState("feed");
   const reduceMotion = useReducedMotion();
 
   const { ref: loadMoreRef } = useInView({ threshold: 0, rootMargin: "100px" });
 
   const { data: feedData, isLoading: feedLoading } = useConvexQuery(
     api.feed.getFeed,
-    {
-      limit: 15,
-    },
+    { limit: 15 },
   );
+
   const { data: suggestedUsers, isLoading: suggestionsLoading } =
     useConvexQuery(api.feed.getSuggestedUsers, { limit: 6 });
+
   const { data: trendingPosts, isLoading: trendingLoading } = useConvexQuery(
     api.feed.getTrendingPosts,
     { limit: 15 },
@@ -266,11 +262,9 @@ export default function FeedPage() {
   return (
     <div className="min-h-screen bg-black pb-16 pt-28 text-white w-full">
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        {/* Single Full Page Layout Grid */}
         <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-10 lg:gap-8">
-          {/* Main Feed Column (7 cols) */}
+          {/* Main Feed Column */}
           <div className="space-y-4 lg:col-span-7">
-            {/* Title Block (Scrolls away) */}
             <motion.div
               initial={{ opacity: 0, y: reduceMotion ? 0 : 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -292,10 +286,9 @@ export default function FeedPage() {
               </p>
             </motion.div>
 
-            {/* Sticky Control Bar (Option B: Input + Tab Switcher in 1 line) */}
+            {/* Sticky Control Bar */}
             <div className="sticky top-20 z-20 py-2 backdrop-blur-md bg-black/80 transition-all border-b border-white/[0.06]">
               <div className="flex items-center gap-2 sm:gap-3 rounded-[24px] border border-white/[0.08] bg-[#050505] p-2 sm:p-2.5">
-                {/* User Avatar */}
                 {currentUser && (
                   <Avatar
                     src={currentUser.imageUrl}
@@ -304,7 +297,6 @@ export default function FeedPage() {
                   />
                 )}
 
-                {/* What's on your mind? Link */}
                 <Link
                   href="/dashboard/create"
                   className="flex-1 min-w-0 rounded-full border border-white/[0.06] bg-white/[0.03] px-3.5 py-2 text-xs sm:text-sm text-slate-500 transition-colors hover:border-white/[0.12] truncate"
@@ -312,7 +304,6 @@ export default function FeedPage() {
                   What's on your mind?...
                 </Link>
 
-                {/* Tab Switcher */}
                 <div className="flex items-center gap-1 rounded-full border border-white/[0.08] bg-zinc-950/80 p-1 flex-shrink-0">
                   {[
                     { key: "feed", label: "For You" },
@@ -349,7 +340,6 @@ export default function FeedPage() {
                   ))}
                 </div>
 
-                {/* Plus Button */}
                 <Link
                   href="/dashboard/create"
                   className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-purple-600 text-white shadow-[0_0_16px_-2px_rgba(168,85,247,0.7)] transition-transform hover:scale-105"
@@ -405,12 +395,8 @@ export default function FeedPage() {
             )}
           </div>
 
-          {/* Right Sidebar Column (3 cols) */}
+          {/* Right Sidebar Column */}
           <div className="lg:col-span-3">
-            {/* 
-              This container sits at the top level of the right column,
-              allowing `sticky top-20` to work through the whole height of the feed!
-            */}
             <div className="sticky top-20 rounded-[28px] border border-white/[0.08] bg-[#050505] p-4 sm:p-5">
               <div className="mb-4 flex items-center gap-2">
                 <Sparkles className="h-4 w-4 text-purple-400" />
@@ -433,13 +419,12 @@ export default function FeedPage() {
                     <motion.div
                       key={user._id}
                       initial={{ opacity: 0, x: reduceMotion ? 0 : -8 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
+                      animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: i * 0.04 }}
                       className="group flex items-center justify-between gap-2 rounded-2xl p-2 transition-colors hover:bg-white/[0.03]"
                     >
                       <Link
-                        href={`/${user.username}`}
+                        href={user.username ? `/${user.username}` : "#"}
                         className="flex flex-1 items-center gap-3 overflow-hidden"
                       >
                         <Avatar
@@ -450,19 +435,30 @@ export default function FeedPage() {
                         />
                         <div className="min-w-0">
                           <p className="truncate text-sm font-semibold text-white">
-                            {user.name}
+                            {user.name || user.username || "Creator"}
                           </p>
                           <p className="truncate text-xs text-slate-500">
-                            {user.followerCount} followers
+                            {user.followerCount ?? 0} followers
                           </p>
                         </div>
                       </Link>
+
+                      {/* Follow Toggle Button with Followed State Support */}
                       <button
                         onClick={() => handleFollowToggle(user._id)}
-                        aria-label={`Follow ${user.name}`}
-                        className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 opacity-0 transition-all group-hover:opacity-100 hover:bg-purple-500 hover:text-white sm:opacity-100"
+                        aria-label={`Follow ${user.name || user.username}`}
+                        className={cn(
+                          "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border transition-all",
+                          user.isFollowed
+                            ? "border-purple-500 bg-purple-600 text-white"
+                            : "border-purple-500/30 bg-purple-500/10 text-purple-300 hover:bg-purple-500 hover:text-white",
+                        )}
                       >
-                        <Plus className="h-4 w-4" />
+                        {user.isFollowed ? (
+                          <Check className="h-4 w-4" />
+                        ) : (
+                          <Plus className="h-4 w-4" />
+                        )}
                       </button>
                     </motion.div>
                   ))}
