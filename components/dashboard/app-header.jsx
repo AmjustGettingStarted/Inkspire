@@ -67,7 +67,7 @@ export function AppHeader({ isCollapsed }) {
         ) : (
           /* Sidebar Expanded -> Show App Logo */
           <Link
-            href="/dashboard"
+            href="/feed"
             className="flex items-center gap-2 bg-zinc-900 rounded-xl px-3 py-1.5 border border-white/10 hover:border-white/20 transition-colors cursor-pointer"
           >
             <Image
