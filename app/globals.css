@@ -37,74 +37,89 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/*
+  Flat black + purple system — no gradients, no glow/blur shadows.
+  Purple is used sparingly: active states, one accent per card, badges.
+*/
 :root {
-  --radius: 0.625rem;
+  --radius: 0.875rem;
+
   --background: oklch(0 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.08 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.08 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.55 0.28 290); /* Electric Violet/Purple */
+  --foreground: oklch(0.96 0 0);
+
+  --card: oklch(0.1 0 0);
+  --card-foreground: oklch(0.96 0 0);
+
+  --popover: oklch(0.11 0 0);
+  --popover-foreground: oklch(0.96 0 0);
+
+  /* Flat solid purple — no gradient stops */
+  --primary: oklch(0.58 0.21 293);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.15 0.02 290);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.12 0 0);
-  --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.55 0.28 290);
+
+  --secondary: oklch(0.14 0.01 290);
+  --secondary-foreground: oklch(0.9 0 0);
+
+  --muted: oklch(0.13 0 0);
+  --muted-foreground: oklch(0.6 0 0);
+
+  --accent: oklch(0.58 0.21 293);
   --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.55 0.28 290);
-  --chart-1: oklch(0.55 0.28 290);
-  --chart-2: oklch(0.65 0.20 310);
-  --chart-3: oklch(0.45 0.22 270);
-  --chart-4: oklch(0.75 0.15 290);
-  --chart-5: oklch(0.85 0.10 290);
-  --sidebar: oklch(0.05 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.55 0.28 290);
+
+  --destructive: oklch(0.6 0.2 25);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.58 0.21 293);
+
+  --chart-1: oklch(0.58 0.21 293);
+  --chart-2: oklch(0.7 0.16 200);
+  --chart-3: oklch(0.75 0.15 145);
+  --chart-4: oklch(0.75 0.16 70);
+  --chart-5: oklch(0.65 0.2 25);
+
+  --sidebar: oklch(0.06 0 0);
+  --sidebar-foreground: oklch(0.9 0 0);
+  --sidebar-primary: oklch(0.58 0.21 293);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.15 0.02 290);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.55 0.28 290);
+  --sidebar-accent: oklch(0.14 0.01 290);
+  --sidebar-accent-foreground: oklch(0.96 0 0);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.58 0.21 293);
 }
 
 .dark {
   --background: oklch(0 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.08 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.08 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.55 0.28 290);
+  --foreground: oklch(0.96 0 0);
+  --card: oklch(0.1 0 0);
+  --card-foreground: oklch(0.96 0 0);
+  --popover: oklch(0.11 0 0);
+  --popover-foreground: oklch(0.96 0 0);
+  --primary: oklch(0.58 0.21 293);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.15 0.02 290);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.12 0 0);
-  --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.55 0.28 290);
+  --secondary: oklch(0.14 0.01 290);
+  --secondary-foreground: oklch(0.9 0 0);
+  --muted: oklch(0.13 0 0);
+  --muted-foreground: oklch(0.6 0 0);
+  --accent: oklch(0.58 0.21 293);
   --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.55 0.28 290);
-  --sidebar: oklch(0.05 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.55 0.28 290);
+  --destructive: oklch(0.65 0.2 25);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.58 0.21 293);
+  --sidebar: oklch(0.06 0 0);
+  --sidebar-foreground: oklch(0.9 0 0);
+  --sidebar-primary: oklch(0.58 0.21 293);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.15 0.02 290);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.55 0.28 290);
+  --sidebar-accent: oklch(0.14 0.01 290);
+  --sidebar-accent-foreground: oklch(0.96 0 0);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.58 0.21 293);
 }
 
 @layer base {
@@ -120,16 +135,44 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Text Gradient - Crisp White to Vivid Purple Accent */
-.gradient-text-primary {
-  @apply bg-gradient-to-r from-white via-purple-300 to-purple-600 bg-clip-text text-transparent;
+/* ---------------------------------------------------------------
+   Flat text + surface utilities (replace old gradient utilities)
+   ----------------------------------------------------------------*/
+
+/* Headings: solid white, no gradient clip */
+.heading-primary {
+  @apply text-white;
 }
 
-.gradient-text-accent {
-  @apply bg-gradient-to-r from-purple-400 to-indigo-500 bg-clip-text text-transparent;
+/* Small accent label, e.g. "MAIN MENU" section headers */
+.label-muted {
+  @apply text-[11px] font-semibold uppercase tracking-[0.14em] text-zinc-500;
 }
 
-/* Glass Card Effect - Pitch Black with Subtle Purple Border Accent */
-.card-glass {
-  @apply bg-black/80 border-purple-900/30 hover:border-purple-500/60 transition-all duration-300 shadow-lg shadow-purple-950/20;
+/* Flat card: solid dark surface, 1px border, no shadow/glow, subtle border
+   brightening on hover only — no color blur, no scale */
+.card-flat {
+  @apply bg-[#0d0d10] border border-white/[0.07] rounded-2xl transition-colors duration-200;
+}
+.card-flat:hover {
+  @apply border-white/[0.14];
+}
+
+/* Solid purple pill — used for active nav items and primary badges */
+.pill-primary {
+  @apply bg-purple-600 text-white;
+}
+
+/* Flat status badges (no gradient, no glow) */
+.badge-positive {
+  @apply bg-emerald-500/12 text-emerald-400 border border-emerald-500/20;
+}
+.badge-negative {
+  @apply bg-red-500/12 text-red-400 border border-red-500/20;
+}
+.badge-neutral {
+  @apply bg-white/[0.06] text-zinc-300 border border-white/10;
+}
+.badge-accent {
+  @apply bg-purple-500/12 text-purple-300 border border-purple-500/20;
 }
