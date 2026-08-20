@@ -45,8 +45,8 @@ export const getAnalytics = query({
         .filter((q) =>
           q.and(
             q.eq(q.field("postId"), postId),
-            q.eq(q.field("status"), "approved")
-          )
+            q.eq(q.field("status"), "approved"),
+          ),
         )
         .collect();
       totalComments += comments.length;
@@ -58,11 +58,11 @@ export const getAnalytics = query({
     const recentPosts = posts.filter((p) => p.createdAt > thirtyDaysAgo);
     const recentViews = recentPosts.reduce(
       (sum, post) => sum + post.viewCount,
-      0
+      0,
     );
     const recentLikes = recentPosts.reduce(
       (sum, post) => sum + post.likeCount,
-      0
+      0,
     );
 
     // Simple growth calculation (you can enhance this)
@@ -144,8 +144,8 @@ export const getRecentActivity = query({
         .filter((q) =>
           q.and(
             q.eq(q.field("postId"), postId),
-            q.eq(q.field("status"), "approved")
-          )
+            q.eq(q.field("status"), "approved"),
+          ),
         )
         .order("desc")
         .take(5);
@@ -223,8 +223,8 @@ export const getPostsWithAnalytics = query({
           .filter((q) =>
             q.and(
               q.eq(q.field("postId"), post._id),
-              q.eq(q.field("status"), "approved")
-            )
+              q.eq(q.field("status"), "approved"),
+            ),
           )
           .collect();
 
@@ -232,77 +232,81 @@ export const getPostsWithAnalytics = query({
           ...post,
           commentCount: comments.length,
         };
-      })
+      }),
     );
 
     return postsWithComments;
   },
 });
 
-// Get daily views data for chart (last 30 days) - Assignment
 export const getDailyViews = query({
-  handler: async (ctx) => {
+  args: {
+    timeframe: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) {
-      throw new Error("Not authenticated");
-    }
+    if (!identity) throw new Error("Not authenticated");
 
-    // Get current user
     const user = await ctx.db
       .query("users")
       .filter((q) => q.eq(q.field("tokenIdentifier"), identity.tokenIdentifier))
       .unique();
 
-    if (!user) {
-      throw new Error("User not found");
-    }
+    if (!user) throw new Error("User not found");
 
-    // Get user's posts
     const userPosts = await ctx.db
       .query("posts")
       .filter((q) => q.eq(q.field("authorId"), user._id))
       .collect();
 
+    if (userPosts.length === 0) return [];
+
     const postIds = userPosts.map((post) => post._id);
 
-    // Generate last 30 days
-    const days = [];
-    for (let i = 29; i >= 0; i--) {
+    const timeframeMap = { "1D": 1, "1W": 7, "1M": 30, "6M": 180, "1Y": 365 };
+    const selectedTimeframe = args.timeframe || "1M";
+    const totalDays = timeframeMap[selectedTimeframe] || 30;
+
+    // Generate date map with default zero values
+    const daysMap = {};
+    const chartData = [];
+
+    for (let i = totalDays - 1; i >= 0; i--) {
       const date = new Date();
       date.setDate(date.getDate() - i);
-      const dateString = date.toISOString().split("T")[0]; // YYYY-MM-DD
-      days.push({
-        date: dateString,
+      const dateKey = date.toISOString().split("T")[0]; // YYYY-MM-DD
+
+      const dayObj = {
+        date: dateKey,
         views: 0,
         day: date.toLocaleDateString("en-US", { weekday: "short" }),
         fullDate: date.toLocaleDateString("en-US", {
           month: "short",
           day: "numeric",
         }),
-      });
+      };
+
+      daysMap[dateKey] = dayObj;
+      chartData.push(dayObj);
     }
 
-    // Get daily stats for all user's posts
+    // Fetch daily stats
     const dailyStats = await ctx.db
       .query("dailyStats")
       .filter((q) => q.or(...postIds.map((id) => q.eq(q.field("postId"), id))))
       .collect();
 
-    // Aggregate views by date
-    const viewsByDate = {};
+    // Map stats safely by normalizing the stored date key
     dailyStats.forEach((stat) => {
-      if (viewsByDate[stat.date]) {
-        viewsByDate[stat.date] += stat.views;
-      } else {
-        viewsByDate[stat.date] = stat.views;
+      // Normalize stored date to YYYY-MM-DD format regardless of ISO format
+      const formattedStatDate = new Date(stat.date || stat._creationTime)
+        .toISOString()
+        .split("T")[0];
+
+      if (daysMap[formattedStatDate]) {
+        daysMap[formattedStatDate].views += stat.views || 0;
       }
     });
-
-    // Merge with days array
-    const chartData = days.map((day) => ({
-      ...day,
-      views: viewsByDate[day.date] || 0,
-    }));
 
     return chartData;
   },
