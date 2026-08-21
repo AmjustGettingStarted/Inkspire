@@ -30,7 +30,7 @@ const PostPage = ({ params }) => {
 
   const { data: currentConvexUser } = useConvexQuery(
     api.users.getCurrentUser,
-    currentUser ? {} : "skip"
+    currentUser ? {} : "skip",
   );
 
   const [commentContent, setCommentContent] = useState("");
@@ -43,13 +43,13 @@ const PostPage = ({ params }) => {
 
   const { data: comments, isLoading: commentsLoading } = useConvexQuery(
     api.comments.getPostComments,
-    { postId }
+    { postId },
   );
 
   // Get like status for current user
   const { data: hasLiked } = useConvexQuery(
     api.likes.hasUserLiked,
-    currentUser ? { postId } : "skip"
+    currentUser ? { postId } : "skip",
   );
 
   const toggleLike = useConvexMutation(api.likes.toggleLike);
@@ -131,10 +131,13 @@ const PostPage = ({ params }) => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
-      <PublicHeader link={`/${username}`} title="Back to Profile" />
-
-      <div className="max-w-4xl mx-auto px-6 py-8">
+    <div className="min-h-screen bg-black text-white">
+      <PublicHeader
+        link={`/${username}`}
+        title="Back to profile"
+        bannerHeight="h-20"
+      />
+      <div className="max-w-6xl mx-auto px-6 py-8">
         <article className="space-y-8">
           {/* Featured Image */}
           {post.featuredImage && (
@@ -331,7 +334,7 @@ const PostPage = ({ params }) => {
                                 day: "numeric",
                                 hour: "2-digit",
                                 minute: "2-digit",
-                              }
+                              },
                             )}
                           </p>
                         </div>
