@@ -19,9 +19,7 @@ const UserCard = ({
   variant = "follower",
   onToggle,
 }) => {
-  // Filter out any Clerk domain images to trigger the initial-letter fallback
-  const hasCustomImage =
-    user.imageUrl && !user.imageUrl.includes("img.clerk.com");
+  const hasImage = Boolean(user.imageUrl);
 
   return (
     <div className="relative flex items-center justify-between p-4 overflow-hidden rounded-2xl bg-purple-950/20 border border-purple-500/20">
@@ -29,7 +27,7 @@ const UserCard = ({
       <div className="flex items-center space-x-3 z-10">
         <Link href={`/${user.username || ""}`}>
           <div className="relative w-11 h-11 cursor-pointer rounded-full overflow-hidden border border-white/10">
-            {hasCustomImage ? (
+            {hasImage ? (
               <Image
                 src={user.imageUrl}
                 alt={user.name || "User"}
@@ -63,9 +61,9 @@ const UserCard = ({
             <Button
               onClick={() => onToggle(user._id)}
               disabled={isLoading}
-              variant="outline"
+              variant="ghost"
               size="sm"
-              className="border-purple-600/50 text-purple-400 hover:bg-purple-600 hover:text-white hover:border-purple-600 cursor-pointer rounded-xl"
+              className="h-auto p-0 !bg-transparent hover:!bg-transparent text-purple-400 hover:text-purple-300 shadow-none border-0 cursor-pointer transition-colors"
             >
               {isLoading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -90,7 +88,7 @@ const UserCard = ({
             ) : (
               <>
                 Unfollow
-                {/* <UserMinus className="h-4 w-4 mr-1.5" /> */}
+                <UserMinus className="h-4 w-4 ml-1" />
               </>
             )}
           </Button>
