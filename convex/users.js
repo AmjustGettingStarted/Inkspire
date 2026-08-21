@@ -2,7 +2,9 @@ import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
 export const store = mutation({
-  args: {},
+  args: {
+    imageUrl: v.optional(v.string()),
+  },
   handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) {
@@ -13,14 +15,20 @@ export const store = mutation({
     const user = await ctx.db
       .query("users")
       .withIndex("by_token", (q) =>
-        q.eq("tokenIdentifier", identity.tokenIdentifier)
+        q.eq("tokenIdentifier", identity.tokenIdentifier),
       )
       .unique();
 
     if (user !== null) {
-      // If we've seen this identity before but the name has changed, patch the value.
-      if (user.name !== identity.name) {
-        await ctx.db.patch(user._id, { name: identity.name });
+      // Keep profile data in sync when Clerk updates the user's identity.
+      const updates = {};
+      const imageUrl = args.imageUrl ?? identity.pictureUrl;
+      if (user.name !== identity.name) updates.name = identity.name;
+      if (user.imageUrl !== imageUrl) {
+        updates.imageUrl = imageUrl;
+      }
+      if (Object.keys(updates).length > 0) {
+        await ctx.db.patch(user._id, updates);
       }
       return user._id;
     }
@@ -30,7 +38,7 @@ export const store = mutation({
       name: identity.name ?? "Anonymous",
       tokenIdentifier: identity.tokenIdentifier,
       email: identity.email,
-      imageUrl: identity.pictureUrl,
+      imageUrl: args.imageUrl ?? identity.pictureUrl,
       createdAt: Date.now(),
       lastActiveAt: Date.now(),
     });
@@ -47,7 +55,7 @@ export const getCurrentUser = query({
     const user = await ctx.db
       .query("users")
       .withIndex("by_token", (q) =>
-        q.eq("tokenIdentifier", identity.tokenIdentifier)
+        q.eq("tokenIdentifier", identity.tokenIdentifier),
       )
       .unique();
 
@@ -74,7 +82,7 @@ export const updateUsername = mutation({
     const user = await ctx.db
       .query("users")
       .withIndex("by_token", (q) =>
-        q.eq("tokenIdentifier", identity.tokenIdentifier)
+        q.eq("tokenIdentifier", identity.tokenIdentifier),
       )
       .unique();
 
@@ -86,7 +94,7 @@ export const updateUsername = mutation({
     const usernameRegex = /^[a-zA-Z0-9_-]+$/;
     if (!usernameRegex.test(args.username)) {
       throw new Error(
-        "Username can only contain letters, numbers, underscores, and hyphens"
+        "Username can only contain letters, numbers, underscores, and hyphens",
       );
     }
 

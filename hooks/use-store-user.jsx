@@ -22,14 +22,14 @@ export function useStoreUser() {
     // Recall that `storeUser` gets the user information via the `auth`
     // object on the server. You don't need to pass anything manually here.
     async function createUser() {
-      const id = await storeUser();
+      const id = await storeUser({ imageUrl: user?.imageUrl });
       setUserId(id);
     }
     createUser();
     return () => setUserId(null);
     // Make sure the effect reruns if the user logs in with
     // a different identity
-  }, [isAuthenticated, storeUser, user?.id]);
+  }, [isAuthenticated, storeUser, user?.id, user?.imageUrl]);
   // Combine the local state with the state from context
   return {
     isLoading: isLoading || (isAuthenticated && userId === null),

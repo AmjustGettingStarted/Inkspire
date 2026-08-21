@@ -34,6 +34,8 @@ function toPlainText(html = "") {
 }
 
 function Avatar({ src, alt, size = 40, online = false, className = "" }) {
+  const isClerkImage = src?.includes("clerk.com");
+
   return (
     <div
       className={cn("relative flex-shrink-0", className)}
@@ -46,6 +48,7 @@ function Avatar({ src, alt, size = 40, online = false, className = "" }) {
           fill
           className="rounded-full object-cover"
           sizes={`${size}px`}
+          unoptimized={isClerkImage}
         />
       ) : (
         <div className="flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-purple-600 to-purple-900 text-sm font-bold text-white">
