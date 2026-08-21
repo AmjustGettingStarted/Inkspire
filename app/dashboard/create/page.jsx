@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ArrowRight, Loader2 } from "lucide-react";
+import { ArrowRight, Loader2, UserCheck } from "lucide-react";
 import { api } from "@/convex/_generated/api";
 import { useConvexQuery } from "@/hooks/use-convex-query";
 import PostEditor from "@/components/post-editor";
@@ -31,20 +31,24 @@ export default function CreatePostPage() {
 
   if (!currentUser?.username) {
     return (
-      <div className="min-h-[50vh] flex items-center justify-center p-8">
-        <div className="max-w-2xl w-full text-center space-y-6">
-          <h1 className="text-3xl font-bold text-white">Username Required</h1>
-          <p className="text-zinc-500 text-lg">
-            Set up a username to create and share your posts
+      <div className="max-w-xl mx-auto md:-mt-12 flex flex-col h-full justify-center items-center px-4 text-center space-y-6">
+        <div className="space-y-2">
+          <h1 className="text-2xl font-bold tracking-tight text-white">
+            Username Required
+          </h1>
+          <p className="text-sm text-zinc-400">
+            You need to set up a unique username before you can start creating
+            and publishing your posts.
           </p>
-          <div className="flex gap-4 justify-center">
-            <Link href="/dashboard/settings">
-              <Button className="bg-purple-600 hover:bg-purple-500 text-white">
-                Set Up Username
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </Button>
-            </Link>
-          </div>
+        </div>
+
+        <div>
+          <Link href="/dashboard/settings">
+            <Button className="bg-purple-600 group hover:bg-purple-500 text-white font-medium px-6 py-2.5 rounded-xl transition-all duration-300 shadow-lg shadow-purple-600/20 cursor-pointer">
+              <span>Set Up Username</span>
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+            </Button>
+          </Link>
         </div>
       </div>
     );
