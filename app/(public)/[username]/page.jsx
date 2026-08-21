@@ -2,10 +2,8 @@
 
 import React from "react";
 import { notFound } from "next/navigation";
-import Image from "next/image";
-import { Calendar, UserPlus, UserCheck } from "lucide-react";
+import { Calendar } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { api } from "@/convex/_generated/api";
 import { useConvexQuery, useConvexMutation } from "@/hooks/use-convex-query";
 import { useUser } from "@clerk/nextjs";
@@ -17,40 +15,35 @@ export default function ProfilePage({ params }) {
   const { username } = React.use(params);
   const { user: currentUser } = useUser();
 
-  // Get user profile
   const {
     data: user,
     isLoading: userLoading,
     error: userError,
   } = useConvexQuery(api.users.getByUsername, { username });
 
-  // Get user's posts
   const { data: postsData, isLoading: postsLoading } = useConvexQuery(
     api.public.getPublishedPostsByUsername,
     {
       username,
       limit: 20,
-    }
+    },
   );
 
-  // Get follower count
   const { data: followerCount } = useConvexQuery(
     api.follows.getFollowerCount,
-    user ? { userId: user._id } : "skip"
+    user ? { userId: user._id } : "skip",
   );
 
-  // Check if current user is following this profile
   const { data: isFollowing } = useConvexQuery(
     api.follows.isFollowing,
-    currentUser && user ? { followingId: user._id } : "skip"
+    currentUser && user ? { followingId: user._id } : "skip",
   );
 
-  // Follow mutation
   const toggleFollow = useConvexMutation(api.follows.toggleFollow);
 
   if (userLoading || postsLoading) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
           <p className="text-slate-400">Loading profile...</p>
@@ -81,59 +74,69 @@ export default function ProfilePage({ params }) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
-      {/* Header */}
-      <PublicHeader link="/" title="Back to Home" />
+    <div className="min-h-screen bg-black text-white">
+      {/* Integrated Banner Header */}
+      <PublicHeader
+        link="/"
+        title="Back to Home"
+        user={user}
+        isFollowing={isFollowing}
+        isOwnProfile={isOwnProfile}
+        onToggleFollow={handleFollowToggle}
+        isLoading={toggleFollow.isLoading}
+      />
 
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        {/* Profile Header */}
-        <div className="text-center mb-12">
-          <div className="relative w-24 h-24 mx-auto mb-6">
-            {user.imageUrl ? (
-              <Image
-                src={user.imageUrl}
-                alt={user.name}
-                fill
-                className="rounded-full object-cover border-2 border-slate-700"
-                sizes="96px"
-              />
-            ) : (
-              <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-2xl font-bold">
-                {user.name.charAt(0).toUpperCase()}
-              </div>
-            )}
-          </div>
-
-          <h1 className="text-4xl font-bold mb-2 gradient-text-primary">
+      {/* Main Content Area */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-8">
+        {/* User Info & Stats Block */}
+        <div className="mb-12">
+          <h1 className="text-3xl font-bold tracking-tight text-white mb-1">
             {user.name}
           </h1>
+          <p className="text-slate-400 text-sm mb-8">@{user.username}</p>
 
-          <p className="text-xl text-slate-400 mb-4">@{user.username}</p>
+          {/* Clean Stats Breakdown (Dividers Removed) */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 py-2">
+            <div>
+              <div className="text-xs text-slate-500 font-medium tracking-wider uppercase mb-1">
+                Posts
+              </div>
+              <div className="text-2xl font-semibold text-white tracking-tight">
+                {posts.length}
+              </div>
+            </div>
+            <div>
+              <div className="text-xs text-slate-500 font-medium tracking-wider uppercase mb-1">
+                Followers
+              </div>
+              <div className="text-2xl font-semibold text-white tracking-tight">
+                {followerCount || 0}
+              </div>
+            </div>
+            <div>
+              <div className="text-xs text-slate-500 font-medium tracking-wider uppercase mb-1">
+                Total Views
+              </div>
+              <div className="text-2xl font-semibold text-white tracking-tight">
+                {posts
+                  .reduce((acc, post) => acc + post.viewCount, 0)
+                  .toLocaleString()}
+              </div>
+            </div>
+            <div>
+              <div className="text-xs text-slate-500 font-medium tracking-wider uppercase mb-1">
+                Total Likes
+              </div>
+              <div className="text-2xl font-semibold text-white tracking-tight">
+                {posts
+                  .reduce((acc, post) => acc + post.likeCount, 0)
+                  .toLocaleString()}
+              </div>
+            </div>
+          </div>
 
-          {/* Follow Button */}
-          {!isOwnProfile && currentUser && (
-            <Button
-              onClick={handleFollowToggle}
-              disabled={toggleFollow.isLoading}
-              variant={isFollowing ? "outline" : "primary"}
-              className="mb-4"
-            >
-              {isFollowing ? (
-                <>
-                  <UserCheck className="h-4 w-4 mr-2" />
-                  Following
-                </>
-              ) : (
-                <>
-                  <UserPlus className="h-4 w-4 mr-2" />
-                  Follow
-                </>
-              )}
-            </Button>
-          )}
-
-          <div className="flex items-center justify-center text-sm text-slate-500">
-            <Calendar className="h-4 w-4 mr-2" />
+          <div className="flex items-center text-xs text-slate-500 mt-6">
+            <Calendar className="h-3.5 w-3.5 mr-1.5 opacity-80" />
             Joined{" "}
             {new Date(user.createdAt).toLocaleDateString("en-US", {
               month: "long",
@@ -142,42 +145,14 @@ export default function ProfilePage({ params }) {
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="flex justify-center gap-8 mb-12">
-          <div className="text-center">
-            <div className="text-2xl font-bold text-white">{posts.length}</div>
-            <div className="text-sm text-slate-400">Posts</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-white">
-              {followerCount || 0}
-            </div>
-            <div className="text-sm text-slate-400">Followers</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-white">
-              {posts
-                .reduce((acc, post) => acc + post.viewCount, 0)
-                .toLocaleString()}
-            </div>
-            <div className="text-sm text-slate-400">Total Views</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-white">
-              {posts
-                .reduce((acc, post) => acc + post.likeCount, 0)
-                .toLocaleString()}
-            </div>
-            <div className="text-sm text-slate-400">Total Likes</div>
-          </div>
-        </div>
-
-        {/* Posts */}
+        {/* Posts Section */}
         <div className="space-y-6">
-          <h2 className="text-2xl font-bold text-white">Recent Posts</h2>
+          <h2 className="text-xl font-bold tracking-tight text-white">
+            Recent Posts
+          </h2>
 
           {posts.length === 0 ? (
-            <Card className="card-glass">
+            <Card className="bg-slate-950/40 border border-slate-900 rounded-2xl">
               <CardContent className="text-center py-12">
                 <p className="text-slate-400 text-lg">No posts yet</p>
                 <p className="text-slate-500 text-sm mt-2">
