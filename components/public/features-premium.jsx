@@ -106,7 +106,7 @@ function FeatureTile({ feature, visual, layout, index, reduceMotion }) {
       transition={{
         duration: reduceMotion ? 0.18 : 0.55,
         delay: reduceMotion ? 0 : index * 0.04,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.16, 1, 0.3, 1],
       }}
       whileHover={
         reduceMotion
@@ -213,32 +213,42 @@ export default function FeaturesPremium() {
       className="relative z-10 -mt-10 overflow-hidden bg-black px-4 pb-16 pt-20 sm:-mt-14 sm:px-6 sm:pb-24 sm:pt-24"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="relative overflow-hidden rounded-[38px] p-px">
+        <div className="relative overflow-hidden rounded-[38px]">
           <motion.div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 rounded-[38px] opacity-75"
-            animate={
-              reduceMotion
-                ? undefined
-                : {
-                    rotate: 360,
-                  }
-            }
-            transition={
-              reduceMotion
-                ? undefined
-                : {
-                    duration: 24,
-                    ease: "linear",
-                    repeat: Number.POSITIVE_INFINITY,
-                  }
-            }
-            style={{
-              background:
-                "conic-gradient(from 180deg at 50% 50%, rgba(255,255,255,0.08), rgba(255,255,255,0.2), rgba(255,255,255,0.05), rgba(147,51,234,0.16), rgba(255,255,255,0.08))",
+            initial={{
+              opacity: 0,
+              y: reduceMotion ? 0 : 50,
+              scale: reduceMotion ? 1 : 0.96,
             }}
-          />
-          <div className="relative rounded-[37px] bg-[#030303] p-3 sm:p-4 lg:p-5">
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.05 }}
+            transition={{
+              duration: reduceMotion ? 0.2 : 1.2,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="relative overflow-hidden rounded-[38px] p-4"
+          >
+            {/* 2. Rotating Border Effect */}
+            <motion.div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 rounded-[38px] opacity-75"
+              animate={
+                reduceMotion
+                  ? undefined
+                  : {
+                      rotate: 360,
+                    }
+              }
+              transition={
+                reduceMotion
+                  ? undefined
+                  : {
+                      duration: 24,
+                      ease: "linear",
+                      repeat: Number.POSITIVE_INFINITY,
+                    }
+              }
+            />
             <div className="pointer-events-none absolute inset-px rounded-[36px] border border-white/[0.06]" />
             <motion.div
               initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
@@ -246,7 +256,7 @@ export default function FeaturesPremium() {
               viewport={{ once: true, amount: 0.6 }}
               transition={{
                 duration: reduceMotion ? 0.18 : 0.5,
-                ease: [0.22, 1, 0.36, 1],
+                ease: [0.16, 1, 0.3, 1],
               }}
               className="relative z-10 border-b border-white/[0.06] px-3 pb-7 pt-3 text-center sm:px-5 sm:pb-9 sm:pt-4 lg:px-8 lg:pb-10 lg:pt-7 lg:text-left"
             >
@@ -299,7 +309,7 @@ export default function FeaturesPremium() {
                 />
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
