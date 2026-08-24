@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Search, Bell } from "lucide-react";
+import { Search, Bell, PanelLeft } from "lucide-react";
 import { UserButton, useUser } from "@clerk/nextjs";
 
 const routeTitles = {
@@ -15,7 +15,7 @@ const routeTitles = {
   "/dashboard/settings": "Settings",
 };
 
-export function AppHeader({ isCollapsed }) {
+export function AppHeader({ isCollapsed, onMobileMenuToggle }) {
   const pathname = usePathname();
   const { user } = useUser();
 
@@ -23,10 +23,19 @@ export function AppHeader({ isCollapsed }) {
   const currentTitle = routeTitles[pathname] || "Dashboard";
 
   return (
-    <header className="flex h-14 shrink-0 items-center justify-between rounded-2xl bg-black border border-white/10 px-4 mb-4 shadow-md select-none">
-      {/* Left: Dynamic Page Title */}
-      <div className="flex items-center gap-3">
-        <h1 className="text-lg font-semibold text-white tracking-wide">
+    <header className="flex h-14 shrink-0 items-center justify-between rounded-2xl bg-black border border-white/10 px-3.5 md:px-4 mb-3 md:mb-4 shadow-md select-none">
+      {/* Left: Dynamic Page Title & Mobile Trigger */}
+      <div className="flex items-center gap-2.5 md:gap-3 min-w-0">
+        <button
+          onClick={onMobileMenuToggle}
+          type="button"
+          aria-label="Open mobile menu"
+          className="flex md:hidden h-9 w-9 items-center justify-center rounded-xl bg-zinc-900 border border-white/10 text-zinc-400 hover:text-white hover:border-white/20 transition-colors shrink-0 cursor-pointer"
+        >
+          <PanelLeft className="h-4.5 w-4.5 stroke-[1.75]" />
+        </button>
+
+        <h1 className="text-base sm:text-lg font-semibold text-white tracking-wide truncate">
           {currentTitle}
         </h1>
       </div>

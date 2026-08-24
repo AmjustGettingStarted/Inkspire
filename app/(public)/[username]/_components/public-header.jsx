@@ -48,10 +48,10 @@ const PublicHeader = ({
           <div className="flex justify-between items-end -mt-12 md:-mt-16 mb-4">
             {/* Profile Picture straddling the banner separator */}
             <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-black bg-black shadow-2xl">
-              {user.imageUrl && !user.imageUrl.includes("img.clerk.com") ? (
+              {user.imageUrl ? (
                 <Image
                   src={user.imageUrl}
-                  alt={user.name}
+                  alt={user.name || "User"}
                   fill
                   className="object-cover"
                   sizes="128px"
