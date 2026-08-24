@@ -11,8 +11,19 @@ export default function CtaSection() {
 
   return (
     <section className="relative z-10 py-16 sm:py-24 px-4 sm:px-6">
-      {/* Outer Shell with Animated Conic Border & Pointer Tracker */}
-      <div
+      {/* Replaced outer div with motion.div for slow & smooth entrance */}
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: reduceMotion ? 0 : 50,
+          scale: reduceMotion ? 1 : 0.96,
+        }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.05 }}
+        transition={{
+          duration: reduceMotion ? 0.2 : 1.2,
+          ease: [0.16, 1, 0.3, 1],
+        }}
         onMouseMove={(event) => {
           const rect = event.currentTarget.getBoundingClientRect();
           setPointer({
@@ -111,7 +122,7 @@ export default function CtaSection() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
