@@ -1,13 +1,7 @@
 # Inkspire - AI Content Platform
 
 <p align="center">
-	<img src="public/banner.jpg" alt="Inkspire Banner" width="600"/>
-</p>
-
-<p align="center">
-	<a href="./LICENSE"><img src="https://img.shields.io/github/license/AmjustGettingStarted/Inkspire" alt="License"></a>
-	<a href="https://github.com/AmjustGettingStarted/Inkspire/issues"><img src="https://img.shields.io/github/issues/AmjustGettingStarted/Inkspire" alt="Issues"></a>
-	<a href="https://github.com/AmjustGettingStarted/Inkspire/stargazers"><img src="https://img.shields.io/github/stars/AmjustGettingStarted/Inkspire" alt="Stars"></a>
+	<img src="public/inkspire.gif" alt="Inkspire Banner" width="600"/>
 </p>
 
 <p align="center"><b>Inkspire: Ignite Your Creativity!</b></p>
@@ -106,28 +100,6 @@ npm run dev
 2. Visit [http://localhost:3000](http://localhost:3000)
 3. Sign up or sign in to your account
 4. Create, edit, and share your posts!
-
----
-
-## Screenshots
-
-<!-- Add screenshots to public/ and update the paths below -->
-<p align="center">
-	<img src="public/ss1.png" alt="Desktop UI" width="400"/>
-	<img src="public/ss2.png" alt="Posts" width="400"/>
-</p>
-<!-- Mobile view screenshots -->
-<p align="center" style="
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: nowrap;
-">
-  <img src="public/mobile1.png" alt="Mobile UI" height="400" style="object-fit: contain;"/>
-  <img src="public/mobile2.png" alt="Mobile Feed" height="400" style="object-fit: contain;"/>
-  <img src="public/mobile3.png" alt="Mobile Profile" height="400" style="object-fit: contain;"/>
-</p>
 
 ---
 
