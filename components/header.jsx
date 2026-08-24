@@ -10,6 +10,7 @@ import { Button } from "./ui/button";
 import { LayoutDashboard, Sparkles } from "lucide-react";
 import { Authenticated, Unauthenticated } from "convex/react";
 import Image from "next/image";
+import { BorderBeam } from "./ui/border-beam"; // 1. Import BorderBeam
 
 export default function Header() {
   const { isLoading, isAuthenticated } = useStoreUser();
@@ -32,9 +33,21 @@ export default function Header() {
 
   return (
     <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-4xl px-4">
-      <div className="backdrop-blur-xl bg-black/60 border border-white/10 rounded-full px-5 sm:px-7 py-3 flex items-center justify-between gap-4 shadow-2xl">
+      {/* 2. Added relative and overflow-hidden to the header container */}
+      <div className="relative overflow-hidden backdrop-blur-xl bg-black/60 border border-white/10 rounded-full px-5 sm:px-7 py-3 flex items-center justify-between gap-4 shadow-2xl">
+        {/* 3. Border Beam component added here */}
+        <BorderBeam
+          size={120}
+          duration={8}
+          colorFrom="#a855f7"
+          colorTo="#ec4899"
+        />
+
         {/* Logo */}
-        <Link href={isAuthenticated ? "/feed" : "/"} className="flex-shrink-0">
+        <Link
+          href={isAuthenticated ? "/feed" : "/"}
+          className="flex-shrink-0 z-10"
+        >
           <Image
             src="/logo.png"
             alt="InkSpire Logo"
@@ -46,7 +59,7 @@ export default function Header() {
 
         {/* Navigation */}
         {path === "/" && (
-          <div className="hidden lg:flex items-center space-x-8 flex-1 justify-center text-sm font-medium">
+          <div className="hidden lg:flex items-center space-x-8 flex-1 justify-center text-sm font-medium z-10">
             <Link
               href="#features"
               className="text-gray-300 transition-colors duration-300 hover:text-white cursor-pointer"
@@ -63,7 +76,7 @@ export default function Header() {
         )}
 
         {/* Auth Actions */}
-        <div className="flex items-center gap-3 flex-shrink-0">
+        <div className="flex items-center gap-3 flex-shrink-0 z-10">
           <Authenticated>
             {path === "/feed" && (
               <Link href="/dashboard">
@@ -114,7 +127,11 @@ export default function Header() {
 
         {isLoading && (
           <div className="fixed bottom-0 left-0 w-full z-40 flex justify-center">
-            <BarLoader width={"95%"} color="#D8B4FE" />
+            <BarLoader
+              width={"95%"}
+              height={2} /* Reduced thickness (default is 4) */
+              color="#a855f7" /* Matches the purple BorderBeam color */
+            />
           </div>
         )}
       </div>
