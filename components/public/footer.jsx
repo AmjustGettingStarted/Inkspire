@@ -1,11 +1,26 @@
 "use client";
 
 import React from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import ParticleText from "@/components/ui/ParticleText";
 
 export default function Footer() {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <footer className="relative z-10 w-full bg-black pt-8 pb-4 overflow-hidden">
+    <motion.footer
+      initial={{
+        opacity: 0,
+        y: reduceMotion ? 0 : 40,
+      }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{
+        duration: reduceMotion ? 0.2 : 1.2,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      className="relative z-10 w-full bg-black pt-8 pb-4 overflow-hidden"
+    >
       {/* Metadata Row - Padded internally so text stays aligned */}
       <div className="w-full px-4 sm:px-6 md:px-8 flex flex-wrap justify-between items-end gap-y-4 gap-x-6 text-[10px] sm:text-xs text-zinc-400 font-sans tracking-tight leading-tight">
         <div className="flex flex-col">
@@ -63,6 +78,6 @@ export default function Footer() {
           glow={false}
         />
       </div>
-    </footer>
+    </motion.footer>
   );
 }
