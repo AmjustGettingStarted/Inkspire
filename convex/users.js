@@ -5,7 +5,7 @@ export const store = mutation({
   args: {
     imageUrl: v.optional(v.string()),
   },
-  handler: async (ctx) => {
+  handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) {
       throw new Error("Called storeUser without authentication present");
