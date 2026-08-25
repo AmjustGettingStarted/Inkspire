@@ -24,6 +24,7 @@ import { useConvexQuery, useConvexMutation } from "@/hooks/use-convex-query";
 import { useUser } from "@clerk/nextjs";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 // Strip HTML tags from rich-text content for a clean preview snippet
 function toPlainText(html = "") {
@@ -235,7 +236,7 @@ export default function FeedPage() {
   );
 
   const { data: suggestedUsers, isLoading: suggestionsLoading } =
-    useConvexQuery(api.feed.getSuggestedUsers, { limit: 6 });
+    useConvexQuery(api.feed.getSuggestedUsers, { limit: 8 });
 
   const { data: trendingPosts, isLoading: trendingLoading } = useConvexQuery(
     api.feed.getTrendingPosts,
@@ -265,9 +266,9 @@ export default function FeedPage() {
   return (
     <div className="min-h-screen bg-black pb-16 pt-28 text-white w-full">
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-10 lg:gap-8">
+        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-12 lg:gap-8">
           {/* Main Feed Column */}
-          <div className="space-y-4 lg:col-span-7">
+          <div className="space-y-4 lg:col-span-9">
             <motion.div
               initial={{ opacity: 0, y: reduceMotion ? 0 : 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -289,8 +290,8 @@ export default function FeedPage() {
               </p>
             </motion.div>
 
-            {/* Sticky Control Bar */}
-            <div className="sticky top-20 z-20 py-2 backdrop-blur-md bg-black/80 transition-all border-b border-white/[0.06]">
+            {/* Control Bar — scrolls normally with the feed */}
+            <div className="py-2 border-b border-white/[0.06]">
               <div className="flex items-center gap-2 sm:gap-3 rounded-[24px] border border-white/[0.08] bg-[#050505] p-2 sm:p-2.5">
                 {currentUser && (
                   <Avatar
@@ -398,82 +399,82 @@ export default function FeedPage() {
             )}
           </div>
 
-          {/* Right Sidebar Column */}
-          <div className="lg:col-span-3">
-            <div className="sticky top-20 rounded-[28px] border border-white/[0.08] bg-[#050505] p-4 sm:p-5">
-              <div className="mb-4 flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-purple-400" />
-                <h3 className="text-sm font-bold text-white">
-                  Suggested for you
-                </h3>
-              </div>
-
-              {suggestionsLoading ? (
-                <div className="flex justify-center py-6">
-                  <Loader2 className="h-5 w-5 animate-spin text-purple-500" />
-                </div>
-              ) : !suggestedUsers || suggestedUsers.length === 0 ? (
-                <p className="py-4 text-center text-sm text-slate-500">
-                  No suggestions available
-                </p>
-              ) : (
-                <div className="space-y-1">
-                  {suggestedUsers.map((user, i) => (
-                    <motion.div
-                      key={user._id}
-                      initial={{ opacity: 0, x: reduceMotion ? 0 : -8 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: i * 0.04 }}
-                      className="group flex items-center justify-between gap-2 rounded-2xl p-2 transition-colors hover:bg-white/[0.03]"
-                    >
-                      <Link
-                        href={user.username ? `/${user.username}` : "#"}
-                        className="flex flex-1 items-center gap-3 overflow-hidden"
-                      >
-                        <Avatar
-                          src={user.imageUrl}
-                          alt={user.name}
-                          size={38}
-                          online={i < 2}
-                        />
-                        <div className="min-w-0">
-                          <p className="truncate text-sm font-semibold text-white">
-                            {user.name || user.username || "Creator"}
-                          </p>
-                          <p className="truncate text-xs text-slate-500">
-                            {user.followerCount ?? 0} followers
-                          </p>
-                        </div>
-                      </Link>
-
-                      {/* Follow Toggle Button with Followed State Support */}
-                      <button
-                        onClick={() => handleFollowToggle(user._id)}
-                        aria-label={`Follow ${user.name || user.username}`}
-                        className={cn(
-                          "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border transition-all",
-                          user.isFollowed
-                            ? "border-purple-500 bg-purple-600 text-white"
-                            : "border-purple-500/30 bg-purple-500/10 text-purple-300 hover:bg-purple-500 hover:text-white",
-                        )}
-                      >
-                        {user.isFollowed ? (
-                          <Check className="h-4 w-4" />
-                        ) : (
-                          <Plus className="h-4 w-4" />
-                        )}
-                      </button>
-                    </motion.div>
-                  ))}
-                </div>
-              )}
-
-              <button className="mt-3 flex w-full items-center justify-center gap-1 rounded-full py-2 text-xs font-semibold text-purple-400 transition-colors hover:text-purple-300">
-                View All
-                <ChevronRight className="h-3.5 w-3.5" />
-              </button>
+          {/* Right Sidebar Column — sticky is on the grid item itself for reliability */}
+          <aside
+            className="hidden lg:block lg:col-span-3 sticky top-28 space-y-6 self-start rounded-[28px] border border-white/[0.08] bg-[#050505] p-4 sm:p-5"
+          >
+            <div className="flex items-center gap-2">
+              <h3 className="text-sm font-bold text-white">
+                Suggested for you
+              </h3>
+              <Sparkles className="h-4 w-4 text-purple-400" />
             </div>
-          </div>
+
+            {suggestionsLoading ? (
+              <div className="flex justify-center py-6">
+                <Loader2 className="h-5 w-5 animate-spin text-purple-500" />
+              </div>
+            ) : !suggestedUsers || suggestedUsers.length === 0 ? (
+              <p className="py-4 text-center text-sm text-slate-500">
+                No suggestions available
+              </p>
+            ) : (
+              <div className="space-y-1">
+                {suggestedUsers.map((user, i) => (
+                  <motion.div
+                    key={user._id}
+                    initial={{ opacity: 0, x: reduceMotion ? 0 : -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: i * 0.04 }}
+                    className="group flex items-center justify-between gap-2 rounded-2xl p-2 transition-colors hover:bg-white/[0.03]"
+                  >
+                    <Link
+                      href={user.username ? `/${user.username}` : "#"}
+                      className="flex flex-1 items-center gap-3 overflow-hidden"
+                    >
+                      <Avatar
+                        src={user.imageUrl}
+                        alt={user.name}
+                        size={38}
+                        online={i < 2}
+                      />
+                      <div className="min-w-0">
+                        <p className="truncate text-sm font-semibold text-white">
+                          {user.name || user.username || "Creator"}
+                        </p>
+                        <p className="truncate text-xs text-slate-500">
+                          {user.followerCount ?? 0} followers
+                        </p>
+                      </div>
+                    </Link>
+
+                    {/* Follow Toggle Button with Followed State Support */}
+                    <button
+                      onClick={() => handleFollowToggle(user._id)}
+                      aria-label={`Follow ${user.name || user.username}`}
+                      className={cn(
+                        "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border transition-all",
+                        user.isFollowed
+                          ? "border-purple-500 bg-purple-600 text-white"
+                          : "border-purple-500/30 bg-purple-500/10 text-purple-300 hover:bg-purple-500 hover:text-white",
+                      )}
+                    >
+                      {user.isFollowed ? (
+                        <Check className="h-4 w-4" />
+                      ) : (
+                        <Plus className="h-4 w-4" />
+                      )}
+                    </button>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+
+            <Button variant="ghost" className="mt-3 cursor-pointer flex w-full items-center justify-center gap-1 rounded-full py-2 text-xs font-semibold text-purple-400 transition-colors hover:text-purple-300" disabled>
+              View All
+              <ChevronRight className="h-3.5 w-3.5" />
+            </Button>
+          </aside>
         </div>
       </div>
     </div>
