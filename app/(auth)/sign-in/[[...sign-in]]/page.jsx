@@ -51,7 +51,7 @@ export default function LoginPage() {
       <div className="w-full max-w-[420px] mx-auto flex flex-col">
         {/* Logo and Brand Name */}
         <Link
-          href="#"
+          href="/"
           className="flex items-center justify-center gap-2 font-medium"
         >
           <div className="flex size-20 items-center justify-center rounded-md bg-transparent">
@@ -192,6 +192,7 @@ export default function LoginPage() {
                 id="password"
                 type="password"
                 value={password}
+                placeholder="********"
                 onChange={(e) => setPassword(e.target.value)}
                 className="bg-[#18181b] border-zinc-800 text-white h-10 focus-visible:ring-0 focus-visible:border-zinc-500"
                 required
