@@ -70,7 +70,7 @@ export default function SignUpPage() {
     <div className="flex w-full min-h-screen flex-col items-center justify-center bg-[#09090b] text-white px-4">
       <div className="w-full max-w-[420px] mx-auto flex flex-col">
         {/* Logo and Brand Name */}
-        <Link href="#" className="flex items-center justify-center font-medium">
+        <Link href="/" className="flex items-center justify-center font-medium">
           <div className="flex size-20 items-center justify-center rounded-md bg-transparent">
             <Image
               src="/logo.png"
