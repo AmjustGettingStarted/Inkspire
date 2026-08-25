@@ -70,10 +70,10 @@ const PostPage = ({ params }) => {
 
   if (postLoading) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
-          <p className="text-slate-400">Loading post...</p>
+          <p className="text-white">Loading post...</p>
         </div>
       </div>
     );
@@ -229,11 +229,10 @@ const PostPage = ({ params }) => {
             <Button
               onClick={handleLikeToggle}
               variant="ghost"
-              className={`flex items-center gap-2 ${
-                hasLiked
-                  ? "text-red-400 hover:text-red-300"
-                  : "text-slate-400 hover:text-white"
-              }`}
+              className={`flex items-center gap-2 ${hasLiked
+                ? "text-red-400 hover:text-red-300"
+                : "text-slate-400 hover:text-white"
+                }`}
               disabled={toggleLike.isLoading}
             >
               <Heart className={`h-5 w-5 ${hasLiked ? "fill-current" : ""}`} />
