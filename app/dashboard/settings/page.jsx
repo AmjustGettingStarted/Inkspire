@@ -93,16 +93,8 @@ export default function SettingsPage() {
 
   return (
     <div className="space-y-8">
-      {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold heading-primary">Settings</h1>
-        <p className="text-zinc-500 mt-2">
-          Manage your profile and account preferences
-        </p>
-      </div>
-
       {/* Username Settings */}
-      <Card className="card-flat max-w-2xl">
+      <Card className="w-full  bg-black">
         <CardHeader>
           <CardTitle className="text-white flex items-center">
             <User className="h-5 w-5 mr-2 text-purple-400" />
@@ -152,7 +144,7 @@ export default function SettingsPage() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full sm:w-auto bg-purple-600 hover:bg-purple-500 text-white"
+                className="w-full sm:w-auto cursor-pointer bg-purple-600 hover:bg-purple-500 text-white"
               >
                 {isSubmitting ? (
                   <>
